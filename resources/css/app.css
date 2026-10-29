@@ -12,12 +12,12 @@
 }
 
 :root {
-    --app-canvas: #eef6f3;
+    --app-canvas: #f5f5f4;
     --app-ink: #0f172a;
-    --app-accent: #0f766e;
-    --app-accent-strong: #115e59;
-    --app-sand: #f4d58d;
-    --app-sand-strong: #fbbf24;
+    --app-accent: #1e40af;
+    --app-accent-strong: #1e3a8a;
+    --app-sand: #fed7aa;
+    --app-sand-strong: #ea580c;
 }
 
 html {
@@ -57,7 +57,7 @@ body {
 }
 
 .apm-section ::selection {
-    background: rgba(45, 212, 191, 0.35);
+    background: rgba(234, 88, 12, 0.3);
     color: #fff;
 }
 

@@ -58,7 +58,7 @@ const reloadPage = () => {
 <template>
     <Head :title="`${props.status} - ${errorDetails.title}`" />
 
-    <div class="min-h-screen flex flex-col justify-center items-center bg-slate-50 px-4 py-12 text-slate-900 selection:bg-teal-600 selection:text-white relative">
+    <div class="min-h-screen flex flex-col justify-center items-center bg-stone-100 px-4 py-12 text-stone-900 selection:bg-blue-800 selection:text-white relative">
         <!-- Subtle Pattern Background -->
         <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:20px_20px] opacity-60" />
 
@@ -80,9 +80,9 @@ const reloadPage = () => {
                     <span
                         class="rounded-full px-3 py-1 text-xs font-bold"
                         :class="props.status === 429
-                            ? 'bg-amber-50 text-amber-800 border border-amber-200'
+                            ? 'bg-orange-50 text-orange-800 border border-orange-200'
                             : props.status === 404
-                            ? 'bg-sky-50 text-sky-800 border border-sky-200'
+                            ? 'bg-blue-50 text-blue-800 border border-blue-200'
                             : 'bg-rose-50 text-rose-800 border border-rose-200'"
                     >
                         {{ errorDetails.badge }}
@@ -101,7 +101,7 @@ const reloadPage = () => {
 
                 <!-- Security / Technical Tip -->
                 <div class="rounded-lg bg-slate-50 border border-slate-200 p-3 text-xs text-slate-600 flex items-start gap-2.5">
-                    <svg class="h-4 w-4 shrink-0 text-teal-700 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg class="h-4 w-4 shrink-0 text-blue-800 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     <p class="text-[11px] leading-relaxed">
@@ -113,7 +113,7 @@ const reloadPage = () => {
                 <div class="flex flex-col sm:flex-row items-center gap-2 pt-2">
                     <Link
                         href="/"
-                        class="w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-1.5 rounded-lg bg-teal-700 px-4 py-2.5 text-xs font-bold text-white shadow-xs hover:bg-teal-800 transition"
+                        class="w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl bg-orange-500 px-4 py-2.5 text-xs font-bold text-white shadow-xs hover:bg-orange-600 transition"
                     >
                         <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />

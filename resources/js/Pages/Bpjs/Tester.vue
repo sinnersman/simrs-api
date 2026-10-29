@@ -779,15 +779,15 @@ const runEndpoint = async () => {
 const getMethodBadgeClass = (method) => {
     switch (method) {
         case 'GET':
-            return 'bg-sky-100 text-sky-800 border-sky-300';
+            return 'bg-blue-100 text-blue-800 border-blue-300';
         case 'POST':
-            return 'bg-emerald-100 text-emerald-800 border-emerald-300';
+            return 'bg-blue-800 text-white border-blue-800';
         case 'PUT':
-            return 'bg-amber-100 text-amber-800 border-amber-300';
+            return 'bg-orange-100 text-orange-800 border-orange-300';
         case 'DELETE':
             return 'bg-rose-100 text-rose-800 border-rose-300';
         default:
-            return 'bg-slate-100 text-slate-800 border-slate-300';
+            return 'bg-stone-100 text-stone-800 border-stone-300';
     }
 };
 </script>
@@ -797,7 +797,7 @@ const getMethodBadgeClass = (method) => {
 
     <AdminLayout>
         <!-- Module Header Navigation -->
-        <div class="mb-3 rounded-lg border border-slate-200/90 bg-white p-2 shadow-xs">
+        <div class="mb-3 rounded-lg border border-stone-200/90 bg-white p-2 shadow-xs">
             <div class="flex items-center gap-1.5 overflow-x-auto scrollbar-none">
                 <button
                     v-for="tab in moduleTabs"
@@ -805,16 +805,16 @@ const getMethodBadgeClass = (method) => {
                     type="button"
                     class="group flex shrink-0 items-center gap-2 rounded-md px-3 py-1.5 text-xs font-semibold transition"
                     :class="selectedModule === tab.id
-                        ? 'bg-slate-900 text-white shadow-xs'
-                        : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'"
+                        ? 'bg-stone-900 text-white shadow-xs'
+                        : 'text-stone-600 hover:bg-stone-100 hover:text-stone-900'"
                     @click="selectedModule = tab.id"
                 >
                     <span>{{ tab.label }}</span>
                     <span
                         class="rounded-full px-1.5 py-0.2 text-[10px] font-bold"
                         :class="selectedModule === tab.id
-                            ? 'bg-slate-800 text-slate-200'
-                            : 'bg-slate-100 text-slate-500 group-hover:bg-slate-200 group-hover:text-slate-700'"
+                            ? 'bg-stone-800 text-stone-200'
+                            : 'bg-stone-100 text-stone-500 group-hover:bg-stone-200 group-hover:text-stone-700'"
                     >
                         {{ tab.count }}
                     </span>
@@ -825,18 +825,18 @@ const getMethodBadgeClass = (method) => {
         <!-- Main Studio Grid -->
         <div class="grid grid-cols-1 gap-3 xl:grid-cols-[330px_minmax(0,1fr)]">
             <!-- LEFT PANEL: Endpoint Explorer -->
-            <aside class="flex flex-col rounded-lg border border-slate-200 bg-white shadow-xs overflow-hidden xl:h-[calc(100vh-8.5rem)]">
+            <aside class="flex flex-col rounded-lg border border-stone-200 bg-white shadow-xs overflow-hidden xl:h-[calc(100vh-8.5rem)]">
                 <!-- Search & Filters -->
-                <div class="p-2.5 border-b border-slate-200 bg-slate-50/70 space-y-2">
+                <div class="p-2.5 border-b border-stone-200 bg-stone-50/70 space-y-2">
                     <div class="relative">
-                        <svg class="pointer-events-none absolute left-2.5 top-2.5 h-3.5 w-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg class="pointer-events-none absolute left-2.5 top-2.5 h-3.5 w-3.5 text-stone-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
                         <input
                             v-model="search"
                             type="text"
                             placeholder="Cari endpoint atau path..."
-                            class="w-full rounded border border-slate-300 bg-white py-1.5 pl-8 pr-2.5 text-xs text-slate-900 placeholder:text-slate-400 outline-none focus:border-teal-600 focus:ring-1 focus:ring-teal-600 transition"
+                            class="w-full rounded border border-stone-300 bg-white py-1.5 pl-8 pr-2.5 text-xs text-stone-900 placeholder:text-stone-400 outline-none focus:border-blue-800 focus:ring-1 focus:ring-blue-800 transition"
                         >
                     </div>
 
@@ -848,27 +848,27 @@ const getMethodBadgeClass = (method) => {
                                 type="button"
                                 class="rounded px-1.5 py-0.5 font-bold uppercase transition"
                                 :class="selectedMethod === m
-                                    ? 'bg-slate-900 text-white'
-                                    : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100'"
+                                    ? 'bg-stone-900 text-white'
+                                    : 'bg-white text-stone-600 border border-stone-200 hover:bg-stone-100'"
                                 @click="selectedMethod = m"
                             >
                                 {{ m }}
                             </button>
                         </div>
-                        <span class="font-medium text-slate-400">{{ filteredEndpoints.length }} item</span>
+                        <span class="font-medium text-stone-400">{{ filteredEndpoints.length }} item</span>
                     </div>
                 </div>
 
                 <!-- Endpoint Items -->
-                <div class="flex-1 overflow-y-auto divide-y divide-slate-100">
+                <div class="flex-1 overflow-y-auto divide-y divide-stone-100">
                     <button
                         v-for="item in filteredEndpoints"
                         :key="item.id"
                         type="button"
                         class="w-full text-left px-3 py-2 transition text-xs flex flex-col gap-0.5 border-l-2"
                         :class="activeId === item.id
-                            ? 'bg-teal-50/80 border-teal-600'
-                            : 'border-transparent hover:bg-slate-50'"
+                            ? 'bg-blue-50/80 border-blue-600'
+                            : 'border-transparent hover:bg-stone-50'"
                         @click="selectEndpoint(item.id)"
                     >
                         <div class="flex items-center gap-2">
@@ -878,17 +878,17 @@ const getMethodBadgeClass = (method) => {
                             >
                                 {{ item.method }}
                             </span>
-                            <span class="font-semibold text-slate-900 truncate flex-1">
+                            <span class="font-semibold text-stone-900 truncate flex-1">
                                 {{ item.title }}
                             </span>
                         </div>
 
-                        <p class="font-mono text-[10px] text-slate-500 truncate pl-0.5">
+                        <p class="font-mono text-[10px] text-stone-500 truncate pl-0.5">
                             {{ item.path }}
                         </p>
                     </button>
 
-                    <div v-if="filteredEndpoints.length === 0" class="p-6 text-center text-slate-500 text-xs">
+                    <div v-if="filteredEndpoints.length === 0" class="p-6 text-center text-stone-500 text-xs">
                         Tidak ada endpoint yang cocok.
                     </div>
                 </div>
@@ -897,15 +897,15 @@ const getMethodBadgeClass = (method) => {
             <!-- RIGHT PANEL: API Studio (Workbench) -->
             <section class="flex flex-col gap-3">
                 <!-- Quota / Unlimited Status Bar -->
-                <div v-if="isUnlimited" class="flex items-center justify-between rounded-lg border border-emerald-200 bg-emerald-50/70 px-3.5 py-2 text-xs">
-                    <div class="flex items-center gap-2 text-emerald-800">
-                        <svg class="h-4 w-4 text-emerald-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div v-if="isUnlimited" class="flex items-center justify-between rounded-lg border border-blue-200 bg-blue-50/70 px-3.5 py-2 text-xs">
+                    <div class="flex items-center gap-2 text-blue-800">
+                        <svg class="h-4 w-4 text-blue-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                         </svg>
                         <span class="font-bold">Akses Semaunya (Unlimited Request):</span>
-                        <span class="text-emerald-700 hidden sm:inline">Lisensi bulanan aktif tanpa batas harian. Bebas uji coba seluruh 209 endpoint.</span>
+                        <span class="text-blue-700 hidden sm:inline">Lisensi bulanan aktif tanpa batas harian. Bebas uji coba seluruh 209 endpoint.</span>
                     </div>
-                    <span class="rounded bg-emerald-100 px-2 py-0.5 text-[11px] font-bold text-emerald-800 border border-emerald-300">
+                    <span class="rounded bg-blue-100 px-2 py-0.5 text-[11px] font-bold text-blue-800 border border-blue-300">
                         Akses Semaunya
                     </span>
                 </div>
@@ -915,14 +915,14 @@ const getMethodBadgeClass = (method) => {
                     class="rounded-xl border p-3.5 text-xs transition-all shadow-xs"
                     :class="quotaUsed >= quotaLimit
                         ? 'border-rose-300 bg-rose-50/85 text-rose-950'
-                        : 'border-amber-200 bg-amber-50/80 text-amber-950'"
+                        : 'border-orange-200 bg-orange-50/80 text-orange-950'"
                 >
                     <div class="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
                         <!-- Left Info -->
                         <div class="flex items-start sm:items-center gap-3">
                             <div
                                 class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition"
-                                :class="quotaUsed >= quotaLimit ? 'bg-rose-100 text-rose-700 ring-1 ring-rose-300' : 'bg-amber-100 text-amber-700 ring-1 ring-amber-300'"
+                                :class="quotaUsed >= quotaLimit ? 'bg-rose-100 text-rose-700 ring-1 ring-rose-300' : 'bg-orange-100 text-orange-700 ring-1 ring-orange-300'"
                             >
                                 <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -932,22 +932,22 @@ const getMethodBadgeClass = (method) => {
                                 <div class="flex flex-wrap items-center gap-2">
                                     <span
                                         class="inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[11px] font-extrabold uppercase tracking-wide"
-                                        :class="quotaUsed >= quotaLimit ? 'bg-rose-200/90 text-rose-900 border border-rose-300' : 'bg-amber-200/90 text-amber-900 border border-amber-300'"
+                                        :class="quotaUsed >= quotaLimit ? 'bg-rose-200/90 text-rose-900 border border-rose-300' : 'bg-orange-200/90 text-orange-900 border border-orange-300'"
                                     >
-                                        <span class="h-1.5 w-1.5 rounded-full" :class="quotaUsed >= quotaLimit ? 'bg-rose-600 animate-pulse' : 'bg-amber-600'"></span>
+                                        <span class="h-1.5 w-1.5 rounded-full" :class="quotaUsed >= quotaLimit ? 'bg-rose-600 animate-pulse' : 'bg-orange-600'"></span>
                                         {{ quotaUsed >= quotaLimit ? 'Batas Uji Coba Harian Tercapai' : 'Mode Uji Coba Terbatas' }}
                                     </span>
-                                    <span class="text-slate-700 font-semibold text-xs">
-                                        Kuota Gratis: <strong class="font-bold text-slate-900">{{ quotaUsed }}</strong> / {{ quotaLimit }} request per hari
+                                    <span class="text-stone-700 font-semibold text-xs">
+                                        Kuota Gratis: <strong class="font-bold text-stone-900">{{ quotaUsed }}</strong> / {{ quotaLimit }} request per hari
                                     </span>
                                 </div>
-                                <p class="text-[11px] text-slate-600 flex items-center gap-1.5">
-                                    <svg class="h-3.5 w-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <p class="text-[11px] text-stone-600 flex items-center gap-1.5">
+                                    <svg class="h-3.5 w-3.5 text-stone-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                     </svg>
                                     <span>Reset otomatis:</span>
-                                    <strong class="font-bold text-slate-900">{{ nextResetInfo.remainingStr }}</strong>
-                                    <span class="text-slate-500">({{ nextResetInfo.dateStr }} pukul {{ nextResetInfo.timeStr }})</span>
+                                    <strong class="font-bold text-stone-900">{{ nextResetInfo.remainingStr }}</strong>
+                                    <span class="text-stone-500">({{ nextResetInfo.dateStr }} pukul {{ nextResetInfo.timeStr }})</span>
                                 </p>
                             </div>
                         </div>
@@ -957,13 +957,13 @@ const getMethodBadgeClass = (method) => {
                             <!-- Clean Progress Meter -->
                             <div class="hidden md:flex flex-col items-end gap-1">
                                 <div class="flex items-center gap-1.5 text-[10px] font-mono">
-                                    <span class="text-slate-500">Pemakaian:</span>
-                                    <span class="font-bold text-slate-900">{{ quotaUsed }}/{{ quotaLimit }} ({{ Math.min(100, Math.round((quotaUsed / (quotaLimit || 1)) * 100)) }}%)</span>
+                                    <span class="text-stone-500">Pemakaian:</span>
+                                    <span class="font-bold text-stone-900">{{ quotaUsed }}/{{ quotaLimit }} ({{ Math.min(100, Math.round((quotaUsed / (quotaLimit || 1)) * 100)) }}%)</span>
                                 </div>
-                                <div class="w-28 bg-slate-200 rounded-full h-2 overflow-hidden ring-1 ring-slate-300/60">
+                                <div class="w-28 bg-stone-200 rounded-full h-2 overflow-hidden ring-1 ring-stone-300/60">
                                     <div
                                         class="h-2 rounded-full transition-all duration-500"
-                                        :class="quotaUsed >= quotaLimit ? 'bg-rose-600' : 'bg-amber-600'"
+                                        :class="quotaUsed >= quotaLimit ? 'bg-rose-600' : 'bg-orange-600'"
                                         :style="{ width: `${Math.min(100, (quotaUsed / (quotaLimit || 1)) * 100)}%` }"
                                     ></div>
                                 </div>
@@ -973,13 +973,13 @@ const getMethodBadgeClass = (method) => {
                             <a
                                 :href="waUpgradeUrl"
                                 target="_blank"
-                                class="inline-flex items-center gap-2 rounded-lg bg-teal-800 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-teal-900 transition hover:shadow-sm"
+                                class="inline-flex items-center gap-2 rounded-lg bg-orange-500 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-orange-600 transition hover:shadow-sm"
                             >
                                 <div class="flex flex-col text-left leading-tight">
-                                    <span class="text-[10px] font-medium text-teal-200">Ingin Akses Tanpa Batas?</span>
+                                    <span class="text-[10px] font-medium text-orange-100">Ingin Akses Tanpa Batas?</span>
                                     <span class="font-bold">Akses Semaunya ({{ formatRibuanSingkat(settings.pricing_monthly_price ?? 450000) }})</span>
                                 </div>
-                                <span v-if="settings.pricing_monthly_promo_active && settings.pricing_monthly_promo_badge" class="rounded bg-amber-400 px-1.5 py-0.5 text-[9px] font-black text-slate-900 leading-none">
+                                <span v-if="settings.pricing_monthly_promo_active && settings.pricing_monthly_promo_badge" class="rounded bg-orange-400 px-1.5 py-0.5 text-[9px] font-black text-stone-900 leading-none">
                                     PROMO
                                 </span>
                                 <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -991,19 +991,19 @@ const getMethodBadgeClass = (method) => {
                 </div>
 
                 <!-- Request Control Bar -->
-                <div class="rounded-xl border border-slate-200 bg-white p-3 shadow-xs space-y-2.5">
+                <div class="rounded-xl border border-stone-200 bg-white p-3 shadow-xs space-y-2.5">
                     <!-- Row 1: Method + URL + Send Button (Clean, Non-overflowing Postman Style) -->
                     <div class="flex items-center gap-2">
                         <!-- URL Input Container -->
-                        <div class="flex flex-1 items-center rounded-lg border border-slate-300 bg-slate-50/80 overflow-hidden text-xs focus-within:border-teal-600 focus-within:ring-2 focus-within:ring-teal-500/20 transition">
+                        <div class="flex flex-1 items-center rounded-lg border border-stone-300 bg-stone-50/80 overflow-hidden text-xs focus-within:border-blue-600 focus-within:ring-2 focus-within:ring-blue-500/20 transition">
                             <span
-                                class="px-3 py-2 font-mono font-black text-xs border-r border-slate-200 shrink-0"
+                                class="px-3 py-2 font-mono font-black text-xs border-r border-stone-200 shrink-0"
                                 :class="getMethodBadgeClass(activeEndpoint?.method)"
                             >
                                 {{ activeEndpoint?.method }}
                             </span>
-                            <span class="px-2 text-slate-400 font-mono text-[11px] select-none shrink-0">
-                                <svg class="h-3.5 w-3.5 text-slate-400 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <span class="px-2 text-stone-400 font-mono text-[11px] select-none shrink-0">
+                                <svg class="h-3.5 w-3.5 text-stone-400 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
                                 </svg>
                             </span>
@@ -1011,11 +1011,11 @@ const getMethodBadgeClass = (method) => {
                                 type="text"
                                 :value="requestTargetUrl"
                                 readonly
-                                class="flex-1 py-2 font-mono text-slate-800 bg-transparent outline-none truncate select-all text-xs"
+                                class="flex-1 py-2 font-mono text-stone-800 bg-transparent outline-none truncate select-all text-xs"
                             />
                             <button
                                 type="button"
-                                class="px-3 py-2 text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-200/70 border-l border-slate-200 transition flex items-center gap-1 shrink-0"
+                                class="px-3 py-2 text-xs font-semibold text-stone-600 hover:text-stone-900 hover:bg-stone-200/70 border-l border-stone-200 transition flex items-center gap-1 shrink-0"
                                 @click="copyText('URL Endpoint', requestTargetUrl)"
                                 title="Salin URL Endpoint"
                             >
@@ -1031,21 +1031,21 @@ const getMethodBadgeClass = (method) => {
                             type="button"
                             class="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-xs font-bold text-white shadow-sm transition disabled:cursor-not-allowed disabled:opacity-80 shrink-0"
                             :class="loading
-                                ? 'bg-teal-800 ring-2 ring-teal-400 ring-offset-1'
+                                ? 'bg-blue-800 ring-2 ring-blue-400 ring-offset-1'
                                 : executionMode === 'mock'
-                                    ? 'bg-teal-700 hover:bg-teal-800 active:scale-98'
-                                    : 'bg-sky-700 hover:bg-sky-800 active:scale-98'"
+                                    ? 'bg-orange-500 hover:bg-orange-600 active:scale-98'
+                                    : 'bg-blue-800 hover:bg-blue-900 active:scale-98'"
                             :disabled="loading"
                             @click="runEndpoint"
                         >
-                            <svg v-if="loading" class="h-4 w-4 animate-spin text-teal-200" viewBox="0 0 24 24" fill="none">
+                            <svg v-if="loading" class="h-4 w-4 animate-spin text-blue-200" viewBox="0 0 24 24" fill="none">
                                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
                             </svg>
-                            <svg v-else-if="executionMode === 'mock'" class="h-4 w-4 text-teal-200" fill="currentColor" viewBox="0 0 24 24">
+                            <svg v-else-if="executionMode === 'mock'" class="h-4 w-4 text-orange-100" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M8 5v14l11-7z"/>
                             </svg>
-                            <svg v-else class="h-4 w-4 text-sky-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg v-else class="h-4 w-4 text-blue-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                             </svg>
                             <span>{{ loading ? (executionMode === 'mock' ? 'Menjalankan Mock...' : 'Mengirim Live...') : executionMode === 'mock' ? 'Uji Mock' : 'Kirim Live' }}</span>
@@ -1053,38 +1053,38 @@ const getMethodBadgeClass = (method) => {
                     </div>
 
                     <!-- Row 2: Secondary Controls (Mode Toggle, Scenario, Endpoint Description) -->
-                    <div class="flex flex-wrap items-center justify-between gap-3 text-xs border-t border-slate-100 pt-2">
+                    <div class="flex flex-wrap items-center justify-between gap-3 text-xs border-t border-stone-100 pt-2">
                         <div class="flex flex-wrap items-center gap-3">
                             <!-- Mode Segmented Control -->
-                            <div class="inline-flex rounded-lg border border-slate-200 bg-slate-100 p-0.5 font-semibold text-xs shadow-2xs">
+                            <div class="inline-flex rounded-lg border border-stone-200 bg-stone-100 p-0.5 font-semibold text-xs shadow-2xs">
                                 <button
                                     type="button"
                                     class="rounded-md px-2.5 py-1 transition flex items-center gap-1.5"
                                     :class="executionMode === 'mock'
-                                        ? 'bg-white text-slate-900 shadow-xs font-bold'
-                                        : 'text-slate-600 hover:text-slate-900'"
+                                        ? 'bg-white text-stone-900 shadow-xs font-bold'
+                                        : 'text-stone-600 hover:text-stone-900'"
                                     @click="executionMode = 'mock'"
                                 >
-                                    <span>⚡ Mock Simulator (Dummy)</span>
+                                    <span class="inline-flex items-center gap-1.5"><svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>Mock Simulator (Dummy)</span>
                                 </button>
                                 <button
                                     type="button"
                                     class="rounded-md px-2.5 py-1 transition flex items-center gap-1.5"
                                     :class="executionMode === 'live'
-                                        ? 'bg-teal-700 text-white shadow-xs font-bold'
-                                        : 'text-slate-600 hover:text-slate-900'"
+                                        ? 'bg-blue-800 text-white shadow-xs font-bold'
+                                        : 'text-stone-600 hover:text-stone-900'"
                                     @click="executionMode = 'live'"
                                 >
-                                    <span>🌐 Live API (Vendor BPJS)</span>
+                                    <span class="inline-flex items-center gap-1.5"><svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>Live API (Vendor BPJS)</span>
                                 </button>
                             </div>
 
                             <!-- Mock Scenario Dropdown -->
-                            <div v-if="executionMode === 'mock'" class="flex items-center gap-1.5 text-slate-600">
-                                <span class="text-xs font-medium text-slate-500">Skenario:</span>
+                            <div v-if="executionMode === 'mock'" class="flex items-center gap-1.5 text-stone-600">
+                                <span class="text-xs font-medium text-stone-500">Skenario:</span>
                                 <select
                                     v-model="mockScenario"
-                                    class="rounded-md border border-slate-300 bg-white px-2 py-1 text-xs font-semibold text-slate-800 outline-none hover:border-slate-400 focus:border-teal-500 transition"
+                                    class="rounded-md border border-stone-300 bg-white px-2 py-1 text-xs font-semibold text-stone-800 outline-none hover:border-stone-400 focus:border-blue-500 transition"
                                 >
                                     <option value="success">200 Sukses (Data Normal)</option>
                                     <option value="failed">400 Error (Gagal Simulasi)</option>
@@ -1093,33 +1093,31 @@ const getMethodBadgeClass = (method) => {
                         </div>
 
                         <!-- Active Endpoint Info -->
-                        <div class="flex items-center gap-2 text-xs text-slate-600 truncate max-w-lg">
-                            <span class="rounded bg-slate-100 px-2 py-0.5 font-bold text-slate-800 border border-slate-200 truncate">
+                        <div class="flex items-center gap-2 text-xs text-stone-600 truncate max-w-lg">
+                            <span class="rounded bg-stone-100 px-2 py-0.5 font-bold text-stone-800 border border-stone-200 truncate">
                                 {{ activeEndpoint?.title }}
                             </span>
-                            <span class="text-slate-400">•</span>
-                            <span class="truncate text-slate-500 font-medium">{{ activeEndpoint?.description }}</span>
+                            <span class="text-stone-400">•</span>
+                            <span class="truncate text-stone-500 font-medium">{{ activeEndpoint?.description }}</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Interactive Architecture Flow Diagram (Bagaimana SIMRS Gateway Bekerja) -->
-                <div class="rounded-xl border border-teal-200/90 bg-gradient-to-r from-teal-50/70 via-white to-sky-50/70 p-3 shadow-xs">
+                <div class="rounded-xl border border-blue-200/90 bg-blue-50/70 p-3 shadow-xs">
                     <div class="flex items-center justify-between mb-2">
                         <div class="flex items-center gap-2">
-                            <span class="flex h-5 w-5 items-center justify-center rounded-full bg-teal-600 text-white text-[11px] font-bold">
-                                ℹ️
-                            </span>
-                            <h4 class="text-xs font-bold text-slate-900">
+                            <span class="flex h-5 w-5 items-center justify-center rounded-full bg-blue-600 text-white font-bold"><svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 16v-4M12 8h.01"/></svg></span>
+                            <h4 class="text-xs font-bold text-stone-900">
                                 Alur Kerja Bridging BPJS (Cara SIMRS Gateway Menghilangkan Kerumitan Kriptografi)
                             </h4>
-                            <span class="rounded bg-teal-100 px-1.5 py-0.2 text-[10px] font-bold text-teal-800 border border-teal-200">
+                            <span class="rounded bg-blue-100 px-1.5 py-0.2 text-[10px] font-bold text-blue-800 border border-blue-200">
                                 Diagram Visual
                             </span>
                         </div>
                         <button
                             type="button"
-                            class="text-[11px] font-semibold text-teal-700 hover:text-teal-900 transition flex items-center gap-1"
+                            class="text-[11px] font-semibold text-blue-700 hover:text-blue-900 transition flex items-center gap-1"
                             @click="showArchitectureFlow = !showArchitectureFlow"
                         >
                             <span>{{ showArchitectureFlow ? 'Sembunyikan' : 'Tampilkan Diagram' }}</span>
@@ -1134,17 +1132,17 @@ const getMethodBadgeClass = (method) => {
                         <div
                             class="rounded-lg border p-2.5 transition cursor-pointer"
                             :class="requestTab === 'params' || requestTab === 'form' || requestTab === 'json'
-                                ? 'border-emerald-400 bg-white shadow-xs ring-1 ring-emerald-300'
-                                : 'border-slate-200/80 bg-white/70 hover:bg-white'"
+                                ? 'border-blue-400 bg-white shadow-xs ring-1 ring-blue-300'
+                                : 'border-stone-200/80 bg-white/70 hover:bg-white'"
                             @click="requestTab = 'params'"
                         >
                             <div class="flex items-center justify-between text-[11px] mb-1 font-bold">
-                                <span class="text-emerald-700 flex items-center gap-1">
-                                    <span>🏢 1. SIMRS Client</span>
+                                <span class="text-blue-700 flex items-center gap-1">
+                                    <span class="inline-flex items-center gap-1"><svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 21h18M5 21V5a2 2 0 012-2h10a2 2 0 012 2v16M9 21v-6h6v6M9 9h.01M12 9h.01M15 9h.01M9 13h.01M12 13h.01M15 13h.01"/></svg>1. SIMRS Client</span>
                                 </span>
-                                <span class="rounded bg-emerald-100 px-1.5 py-0.2 text-[9px] font-mono text-emerald-800">Plain JSON</span>
+                                <span class="rounded bg-blue-100 px-1.5 py-0.2 text-[9px] font-mono text-blue-800">Plain JSON</span>
                             </div>
-                            <p class="text-[10px] text-slate-600 leading-snug">
+                            <p class="text-[10px] text-stone-600 leading-snug">
                                 Aplikasi SIMRS Anda cukup kirim parameter biasa (NIK, No Kartu, SEP) tanpa pusing rumus enkripsi.
                             </p>
                         </div>
@@ -1153,17 +1151,17 @@ const getMethodBadgeClass = (method) => {
                         <div
                             class="rounded-lg border p-2.5 transition cursor-pointer"
                             :class="requestTab === 'req_encrypted' || requestTab === 'headers'
-                                ? 'border-teal-500 bg-white shadow-xs ring-1 ring-teal-300'
-                                : 'border-slate-200/80 bg-white/70 hover:bg-white'"
+                                ? 'border-blue-500 bg-white shadow-xs ring-1 ring-blue-300'
+                                : 'border-stone-200/80 bg-white/70 hover:bg-white'"
                             @click="requestTab = 'headers'"
                         >
                             <div class="flex items-center justify-between text-[11px] mb-1 font-bold">
-                                <span class="text-teal-700 flex items-center gap-1">
-                                    <span>🛡️ 2. Security Gateway</span>
+                                <span class="text-blue-700 flex items-center gap-1">
+                                    <span class="inline-flex items-center gap-1"><svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>2. Security Gateway</span>
                                 </span>
-                                <span class="rounded bg-teal-100 px-1.5 py-0.2 text-[9px] font-mono text-teal-800">HMAC+AES</span>
+                                <span class="rounded bg-blue-100 px-1.5 py-0.2 text-[9px] font-mono text-blue-800">HMAC+AES</span>
                             </div>
-                            <p class="text-[10px] text-slate-600 leading-snug">
+                            <p class="text-[10px] text-stone-600 leading-snug">
                                 Gateway otomatis generate Header BPJS (ConsID, Timestamp, Signature SHA256) & enkripsi payload.
                             </p>
                         </div>
@@ -1172,17 +1170,17 @@ const getMethodBadgeClass = (method) => {
                         <div
                             class="rounded-lg border p-2.5 transition cursor-pointer"
                             :class="responseTab === 'encrypted'
-                                ? 'border-sky-500 bg-white shadow-xs ring-1 ring-sky-300'
-                                : 'border-slate-200/80 bg-white/70 hover:bg-white'"
+                                ? 'border-blue-500 bg-white shadow-xs ring-1 ring-blue-300'
+                                : 'border-stone-200/80 bg-white/70 hover:bg-white'"
                             @click="responseTab = 'encrypted'"
                         >
                             <div class="flex items-center justify-between text-[11px] mb-1 font-bold">
-                                <span class="text-sky-700 flex items-center gap-1">
-                                    <span>🏥 3. Server BPJS</span>
+                                <span class="text-blue-700 flex items-center gap-1">
+                                    <span class="inline-flex items-center gap-1"><svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-3h6v3M12 8v6M9 11h6"/></svg>3. Server BPJS</span>
                                 </span>
-                                <span class="rounded bg-sky-100 px-1.5 py-0.2 text-[9px] font-mono text-sky-800">Wire Cipher</span>
+                                <span class="rounded bg-blue-100 px-1.5 py-0.2 text-[9px] font-mono text-blue-800">Wire Cipher</span>
                             </div>
-                            <p class="text-[10px] text-slate-600 leading-snug">
+                            <p class="text-[10px] text-stone-600 leading-snug">
                                 Server BPJS memproses dan mengembalikan respons terenkripsi (Ciphertext LZ-String) via internet.
                             </p>
                         </div>
@@ -1191,17 +1189,17 @@ const getMethodBadgeClass = (method) => {
                         <div
                             class="rounded-lg border p-2.5 transition cursor-pointer"
                             :class="responseTab === 'plain'
-                                ? 'border-emerald-500 bg-white shadow-xs ring-1 ring-emerald-300'
-                                : 'border-slate-200/80 bg-white/70 hover:bg-white'"
+                                ? 'border-blue-500 bg-white shadow-xs ring-1 ring-blue-300'
+                                : 'border-stone-200/80 bg-white/70 hover:bg-white'"
                             @click="responseTab = 'plain'"
                         >
                             <div class="flex items-center justify-between text-[11px] mb-1 font-bold">
-                                <span class="text-emerald-700 flex items-center gap-1">
-                                    <span>✨ 4. Siap Digunakan</span>
+                                <span class="text-blue-700 flex items-center gap-1">
+                                    <span class="inline-flex items-center gap-1"><svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>4. Siap Digunakan</span>
                                 </span>
-                                <span class="rounded bg-emerald-100 px-1.5 py-0.2 text-[9px] font-mono text-emerald-800">Decrypted</span>
+                                <span class="rounded bg-blue-100 px-1.5 py-0.2 text-[9px] font-mono text-blue-800">Decrypted</span>
                             </div>
-                            <p class="text-[10px] text-slate-600 leading-snug">
+                            <p class="text-[10px] text-stone-600 leading-snug">
                                 Gateway otomatis mendekripsi ciphertext menjadi JSON bersih yang langsung dipakai aplikasi SIMRS.
                             </p>
                         </div>
@@ -1211,17 +1209,17 @@ const getMethodBadgeClass = (method) => {
                 <!-- Two-Column Workbench (Request Builder & Response Console) -->
                 <div class="grid grid-cols-1 gap-3 lg:grid-cols-2">
                     <!-- LEFT COLUMN: Request Builder -->
-                    <div class="flex flex-col rounded-xl border border-slate-200 bg-white shadow-xs overflow-hidden h-[540px]">
+                    <div class="flex flex-col rounded-xl border border-stone-200 bg-white shadow-xs overflow-hidden h-[540px]">
                         <!-- Request Tabs Header (2-tier clean layout) -->
-                        <div class="border-b border-slate-200 bg-slate-50/90 text-xs">
+                        <div class="border-b border-stone-200 bg-stone-50/90 text-xs">
                             <!-- Tier 1: Title & Quick Actions -->
-                            <div class="flex items-center justify-between px-3.5 py-2 border-b border-slate-200/60">
+                            <div class="flex items-center justify-between px-3.5 py-2 border-b border-stone-200/60">
                                 <div class="flex items-center gap-2">
-                                    <span class="font-bold text-slate-800 text-xs">Request Builder</span>
+                                    <span class="font-bold text-stone-800 text-xs">Request Builder</span>
                                     <span class="rounded px-1.5 py-0.5 font-mono text-[10px] font-bold" :class="getMethodBadgeClass(activeEndpoint?.method)">
                                         {{ activeEndpoint?.method }}
                                     </span>
-                                    <span class="text-[10px] text-slate-500 font-mono">
+                                    <span class="text-[10px] text-stone-500 font-mono">
                                         {{ activeEndpoint?.mode === 'json' ? 'JSON Body' : activeEndpoint?.mode === 'form' ? 'Form Data' : 'URL Query' }}
                                     </span>
                                 </div>
@@ -1229,7 +1227,7 @@ const getMethodBadgeClass = (method) => {
                                     <button
                                         v-if="requestTab === 'json'"
                                         type="button"
-                                        class="font-semibold text-teal-700 hover:text-teal-900 transition flex items-center gap-1"
+                                        class="font-semibold text-blue-700 hover:text-blue-900 transition flex items-center gap-1"
                                         @click="formatJsonEditor"
                                     >
                                         <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -1239,7 +1237,7 @@ const getMethodBadgeClass = (method) => {
                                     </button>
                                     <button
                                         type="button"
-                                        class="font-semibold text-slate-600 hover:text-slate-900 transition flex items-center gap-1"
+                                        class="font-semibold text-stone-600 hover:text-stone-900 transition flex items-center gap-1"
                                         @click="copyText('Request Payload', buildPreview())"
                                         title="Salin Data Request"
                                     >
@@ -1258,12 +1256,12 @@ const getMethodBadgeClass = (method) => {
                                     type="button"
                                     class="rounded-md px-2.5 py-1 text-xs font-semibold transition flex items-center gap-1.5 shrink-0"
                                     :class="requestTab === 'params'
-                                        ? 'bg-white text-slate-900 border border-slate-200 shadow-2xs font-bold'
-                                        : 'text-slate-600 hover:text-slate-900'"
+                                        ? 'bg-white text-stone-900 border border-stone-200 shadow-2xs font-bold'
+                                        : 'text-stone-600 hover:text-stone-900'"
                                     @click="requestTab = 'params'"
                                 >
-                                    <span>⚙️ Parameters</span>
-                                    <span class="rounded bg-slate-100 px-1.5 py-0.2 text-[10px] font-mono text-slate-600">{{ activeEndpoint.fields.length }}</span>
+                                    <span class="inline-flex items-center gap-1.5"><svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg>Parameters</span>
+                                    <span class="rounded bg-stone-100 px-1.5 py-0.2 text-[10px] font-mono text-stone-600">{{ activeEndpoint.fields.length }}</span>
                                 </button>
 
                                 <button
@@ -1271,44 +1269,44 @@ const getMethodBadgeClass = (method) => {
                                     type="button"
                                     class="rounded-md px-2.5 py-1 text-xs font-semibold transition flex items-center gap-1.5 shrink-0"
                                     :class="requestTab === 'form'
-                                        ? 'bg-white text-slate-900 border border-slate-200 shadow-2xs font-bold'
-                                        : 'text-slate-600 hover:text-slate-900'"
+                                        ? 'bg-white text-stone-900 border border-stone-200 shadow-2xs font-bold'
+                                        : 'text-stone-600 hover:text-stone-900'"
                                     @click="requestTab = 'form'"
                                 >
-                                    <span>📋 Form Fields</span>
+                                    <span class="inline-flex items-center gap-1.5"><svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>Form Fields</span>
                                 </button>
 
                                 <button
                                     type="button"
                                     class="rounded-md px-2.5 py-1 text-xs font-semibold transition flex items-center gap-1.5 shrink-0"
                                     :class="requestTab === 'json'
-                                        ? 'bg-white text-slate-900 border border-slate-200 shadow-2xs font-bold'
-                                        : 'text-slate-600 hover:text-slate-900'"
+                                        ? 'bg-white text-stone-900 border border-stone-200 shadow-2xs font-bold'
+                                        : 'text-stone-600 hover:text-stone-900'"
                                     @click="requestTab = 'json'"
                                 >
-                                    <span>📝 Body (Sebelum Enkripsi)</span>
+                                    <span class="inline-flex items-center gap-1.5"><svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8zM14 2v6h6M9 13h6M9 17h6"/></svg>Body (Sebelum Enkripsi)</span>
                                 </button>
 
                                 <button
                                     type="button"
                                     class="rounded-md px-2.5 py-1 text-xs font-semibold transition flex items-center gap-1.5 shrink-0"
                                     :class="requestTab === 'req_encrypted'
-                                        ? 'bg-white text-slate-900 border border-slate-200 shadow-2xs font-bold'
-                                        : 'text-slate-600 hover:text-slate-900'"
+                                        ? 'bg-white text-stone-900 border border-stone-200 shadow-2xs font-bold'
+                                        : 'text-stone-600 hover:text-stone-900'"
                                     @click="requestTab = 'req_encrypted'"
                                 >
-                                    <span>🔒 Payload Wire (Sesudah Enkripsi)</span>
+                                    <span class="inline-flex items-center gap-1.5"><svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path stroke-linecap="round" stroke-linejoin="round" d="M7 11V7a5 5 0 0110 0v4"/></svg>Payload Wire (Sesudah Enkripsi)</span>
                                 </button>
 
                                 <button
                                     type="button"
                                     class="rounded-md px-2.5 py-1 text-xs font-semibold transition flex items-center gap-1.5 shrink-0"
                                     :class="requestTab === 'headers'
-                                        ? 'bg-white text-slate-900 border border-slate-200 shadow-2xs font-bold'
-                                        : 'text-slate-600 hover:text-slate-900'"
+                                        ? 'bg-white text-stone-900 border border-stone-200 shadow-2xs font-bold'
+                                        : 'text-stone-600 hover:text-stone-900'"
                                     @click="requestTab = 'headers'"
                                 >
-                                    <span>🛡️ Headers BPJS</span>
+                                    <span class="inline-flex items-center gap-1.5"><svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Headers BPJS</span>
                                 </button>
                             </div>
                         </div>
@@ -1319,38 +1317,38 @@ const getMethodBadgeClass = (method) => {
                             <div v-if="requestTab === 'params' && activeEndpoint?.fields?.length">
                                 <div
                                     class="mb-2.5 flex items-center justify-between rounded px-2.5 py-1.5 text-[11px] transition"
-                                    :class="hasExecuted ? 'bg-emerald-50 text-emerald-800 border border-emerald-200' : 'bg-amber-50/90 text-amber-800 border border-amber-200'"
+                                    :class="hasExecuted ? 'bg-blue-50 text-blue-800 border border-blue-200' : 'bg-orange-50/90 text-orange-800 border border-orange-200'"
                                 >
                                     <span class="flex items-center gap-1.5">
-                                        <span class="h-2 w-2 rounded-full" :class="hasExecuted ? 'bg-emerald-500' : 'bg-amber-500'"></span>
+                                        <span class="h-2 w-2 rounded-full" :class="hasExecuted ? 'bg-blue-500' : 'bg-orange-500'"></span>
                                         <span>{{ hasExecuted ? 'Parameter berhasil diuji dengan respons mock simulator' : 'Parameter siap disimulasikan. Klik "Uji Mock" untuk menjalankan.' }}</span>
                                     </span>
-                                    <span v-if="hasExecuted && executedAt" class="font-mono text-[10px] text-emerald-700">
+                                    <span v-if="hasExecuted && executedAt" class="font-mono text-[10px] text-blue-700">
                                         {{ executedAt }}
                                     </span>
                                 </div>
                                 <table class="w-full text-left text-xs">
                                     <thead>
-                                        <tr class="border-b border-slate-200 text-slate-400 uppercase text-[10px] font-bold">
+                                        <tr class="border-b border-stone-200 text-stone-400 uppercase text-[10px] font-bold">
                                             <th class="py-1.5 pr-2">Parameter</th>
                                             <th class="py-1.5 px-2">Tipe</th>
                                             <th class="py-1.5 pl-2">Nilai Input (Dummy / Real)</th>
                                         </tr>
                                     </thead>
-                                    <tbody class="divide-y divide-slate-100">
+                                    <tbody class="divide-y divide-stone-100">
                                         <tr v-for="field in activeEndpoint.fields" :key="field.key">
-                                            <td class="py-1.5 pr-2 font-mono font-semibold text-slate-700">
+                                            <td class="py-1.5 pr-2 font-mono font-semibold text-stone-700">
                                                 {{ field.key }}
-                                                <span class="block font-sans text-[10px] font-normal text-slate-400">{{ field.label }}</span>
+                                                <span class="block font-sans text-[10px] font-normal text-stone-400">{{ field.label }}</span>
                                             </td>
-                                            <td class="py-1.5 px-2 text-slate-400 font-mono text-[10px]">
+                                            <td class="py-1.5 px-2 text-stone-400 font-mono text-[10px]">
                                                 {{ field.type }}
                                             </td>
                                             <td class="py-1.5 pl-2">
                                                 <input
                                                     v-model="queryState[activeEndpoint.id][field.key]"
                                                     type="text"
-                                                    class="w-full rounded border border-slate-300 bg-white px-2 py-1 text-xs text-slate-900 font-mono outline-none focus:border-teal-600 focus:ring-1 focus:ring-teal-600"
+                                                    class="w-full rounded border border-stone-300 bg-white px-2 py-1 text-xs text-stone-900 font-mono outline-none focus:border-blue-800 focus:ring-1 focus:ring-blue-800"
                                                 >
                                             </td>
                                         </tr>
@@ -1361,77 +1359,77 @@ const getMethodBadgeClass = (method) => {
                             <!-- Tab 2: Form Fields -->
                             <div v-else-if="requestTab === 'form' && activeEndpoint?.mode === 'form'" class="grid gap-2.5 sm:grid-cols-2">
                                 <div v-for="field in activeEndpoint.formFields" :key="field.path" class="space-y-0.5">
-                                    <label class="block text-[11px] font-semibold text-slate-700">{{ field.label }}</label>
+                                    <label class="block text-[11px] font-semibold text-stone-700">{{ field.label }}</label>
                                     <input
                                         v-model="formState[activeEndpoint.id][field.path]"
                                         type="text"
-                                        class="w-full rounded border border-slate-300 bg-white px-2 py-1 text-xs font-mono outline-none focus:border-teal-600"
+                                        class="w-full rounded border border-stone-300 bg-white px-2 py-1 text-xs font-mono outline-none focus:border-blue-800"
                                     >
                                 </div>
                             </div>
 
                             <!-- Tab 3: JSON Code Editor (Sebelum Enkripsi) -->
                             <div v-else-if="requestTab === 'json'" class="h-full flex flex-col">
-                                <div class="mb-1.5 flex items-center justify-between text-[11px] text-slate-500">
-                                    <span class="flex items-center gap-1 text-emerald-700 font-semibold">
-                                        <span>🔓</span> Request Body Sebelum Enkripsi (Clean JSON)
+                                <div class="mb-1.5 flex items-center justify-between text-[11px] text-stone-500">
+                                    <span class="flex items-center gap-1 text-blue-700 font-semibold">
+                                        <svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path stroke-linecap="round" stroke-linejoin="round" d="M7 11V7a5 5 0 019.9-1"/></svg>Request Body Sebelum Enkripsi (Clean JSON)
                                     </span>
                                     <span>Format yang dikirim aplikasi SIMRS Anda</span>
                                 </div>
                                 <textarea
                                     v-model="jsonState[activeEndpoint.id]"
-                                    class="w-full flex-1 rounded border border-slate-700 bg-slate-950 p-2.5 font-mono text-xs text-emerald-300 outline-none focus:border-teal-500 leading-relaxed resize-none"
+                                    class="w-full flex-1 rounded border border-stone-700 bg-stone-950 p-2.5 font-mono text-xs text-blue-300 outline-none focus:border-blue-500 leading-relaxed resize-none"
                                     placeholder="{}"
                                 />
                             </div>
 
                             <!-- Tab 3B: Request Payload Sesudah Enkripsi (Wire Format) -->
                             <div v-else-if="requestTab === 'req_encrypted'" class="h-full flex flex-col space-y-2">
-                                <div class="rounded border border-teal-200 bg-teal-50/70 p-2 text-[11px] text-teal-900 flex items-start gap-2">
-                                    <svg class="h-4 w-4 text-teal-600 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <div class="rounded border border-blue-200 bg-blue-50/70 p-2 text-[11px] text-blue-900 flex items-start gap-2">
+                                    <svg class="h-4 w-4 text-blue-600 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
                                     </svg>
                                     <div>
                                         <strong class="font-bold">Format Transmisi ke BPJS (Wire Payload):</strong>
-                                        <p class="text-[10px] text-slate-600 mt-0.5">
+                                        <p class="text-[10px] text-stone-600 mt-0.5">
                                             Request HTTP dikirim ke gateway BPJS bersama Signature HMAC-SHA256. Jika endpoint mensyaratkan enkripsi payload, gateway mengonversi otomatis ke AES-256 + LZ-String.
                                         </p>
                                     </div>
                                 </div>
 
-                                <div class="flex-1 rounded border border-slate-800 bg-slate-950 p-2.5 font-mono text-xs overflow-y-auto">
-                                    <div class="text-teal-400 font-bold mb-1">// HTTP Request Headers Otomatis:</div>
-                                    <div class="text-slate-400 mb-2 pb-2 border-b border-slate-800 text-[11px] space-y-0.5">
-                                        <div>X-cons-id: <span class="text-emerald-300">{{ vendorDebugHeaders['X-cons-id'] }}</span></div>
-                                        <div>X-timestamp: <span class="text-emerald-300">{{ vendorDebugHeaders['X-timestamp'] }}</span></div>
-                                        <div>X-signature: <span class="text-emerald-300">{{ vendorDebugHeaders['X-signature'] }}</span></div>
-                                        <div>user_key: <span class="text-emerald-300">{{ vendorDebugHeaders['user_key'] }}</span></div>
+                                <div class="flex-1 rounded border border-stone-800 bg-stone-950 p-2.5 font-mono text-xs overflow-y-auto">
+                                    <div class="text-blue-400 font-bold mb-1">// HTTP Request Headers Otomatis:</div>
+                                    <div class="text-stone-400 mb-2 pb-2 border-b border-stone-800 text-[11px] space-y-0.5">
+                                        <div>X-cons-id: <span class="text-blue-300">{{ vendorDebugHeaders['X-cons-id'] }}</span></div>
+                                        <div>X-timestamp: <span class="text-blue-300">{{ vendorDebugHeaders['X-timestamp'] }}</span></div>
+                                        <div>X-signature: <span class="text-blue-300">{{ vendorDebugHeaders['X-signature'] }}</span></div>
+                                        <div>user_key: <span class="text-blue-300">{{ vendorDebugHeaders['user_key'] }}</span></div>
                                     </div>
 
-                                    <div class="text-teal-400 font-bold mb-1">// Request Body Wire:</div>
-                                    <pre class="text-teal-300 text-[11px] leading-relaxed overflow-x-auto whitespace-pre">{{ requestCipherData?.raw_bpjs_response ? pretty(requestCipherData.raw_bpjs_response) : pretty(buildPreview() ?? {}) }}</pre>
+                                    <div class="text-blue-400 font-bold mb-1">// Request Body Wire:</div>
+                                    <pre class="text-blue-300 text-[11px] leading-relaxed overflow-x-auto whitespace-pre">{{ requestCipherData?.raw_bpjs_response ? pretty(requestCipherData.raw_bpjs_response) : pretty(buildPreview() ?? {}) }}</pre>
                                 </div>
                             </div>
 
                             <!-- Tab 4: Security Headers Preview -->
                             <div v-else-if="requestTab === 'headers'" class="space-y-2 text-xs">
-                                <p class="text-slate-500 text-[11px]">Header BPJS otomatis dihitung menggunakan HMAC-SHA256.</p>
-                                <div class="rounded border border-slate-200 divide-y divide-slate-100 font-mono text-xs">
+                                <p class="text-stone-500 text-[11px]">Header BPJS otomatis dihitung menggunakan HMAC-SHA256.</p>
+                                <div class="rounded border border-stone-200 divide-y divide-stone-100 font-mono text-xs">
                                     <div class="flex justify-between p-2">
-                                        <span class="text-slate-500">X-cons-id</span>
-                                        <span class="font-semibold text-slate-900">{{ vendorDebugHeaders['X-cons-id'] }}</span>
+                                        <span class="text-stone-500">X-cons-id</span>
+                                        <span class="font-semibold text-stone-900">{{ vendorDebugHeaders['X-cons-id'] }}</span>
                                     </div>
                                     <div class="flex justify-between p-2">
-                                        <span class="text-slate-500">X-timestamp</span>
-                                        <span class="font-semibold text-slate-900">{{ vendorDebugHeaders['X-timestamp'] }}</span>
+                                        <span class="text-stone-500">X-timestamp</span>
+                                        <span class="font-semibold text-stone-900">{{ vendorDebugHeaders['X-timestamp'] }}</span>
                                     </div>
                                     <div class="flex justify-between p-2">
-                                        <span class="text-slate-500">X-signature</span>
-                                        <span class="font-semibold text-slate-900">{{ vendorDebugHeaders['X-signature'] }}</span>
+                                        <span class="text-stone-500">X-signature</span>
+                                        <span class="font-semibold text-stone-900">{{ vendorDebugHeaders['X-signature'] }}</span>
                                     </div>
                                     <div class="flex justify-between p-2">
-                                        <span class="text-slate-500">user_key</span>
-                                        <span class="font-semibold text-slate-900">{{ vendorDebugHeaders['user_key'] }}</span>
+                                        <span class="text-stone-500">user_key</span>
+                                        <span class="font-semibold text-stone-900">{{ vendorDebugHeaders['user_key'] }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -1441,21 +1439,21 @@ const getMethodBadgeClass = (method) => {
                     <!-- RIGHT COLUMN: Response Inspector with Live Simulation Loading Console & Fresh Data Indicator -->
                     <div
                         class="relative flex flex-col rounded-xl border bg-white shadow-xs overflow-hidden h-[540px] transition-all duration-500"
-                        :class="isFresh ? 'border-emerald-500 ring-2 ring-emerald-500/40 shadow-sm' : 'border-slate-200'"
+                        :class="isFresh ? 'border-blue-500 ring-2 ring-blue-500/40 shadow-sm' : 'border-stone-200'"
                     >
                         <!-- Top Progress Bar Animation -->
-                        <div v-if="loading" class="absolute top-0 left-0 right-0 h-1 z-30 overflow-hidden bg-teal-100">
-                            <div class="h-full bg-teal-600 animate-loading-bar w-full"></div>
+                        <div v-if="loading" class="absolute top-0 left-0 right-0 h-1 z-30 overflow-hidden bg-blue-100">
+                            <div class="h-full bg-blue-600 animate-loading-bar w-full"></div>
                         </div>
-                        <div v-else-if="isFresh" class="absolute top-0 left-0 right-0 h-0.5 z-30 bg-emerald-500 transition-all duration-1000"></div>
+                        <div v-else-if="isFresh" class="absolute top-0 left-0 right-0 h-0.5 z-30 bg-blue-500 transition-all duration-1000"></div>
 
                         <!-- Response Header (2-tier clean layout) -->
-                        <div class="border-b border-slate-200 bg-slate-50/90 text-xs">
+                        <div class="border-b border-stone-200 bg-stone-50/90 text-xs">
                             <!-- Tier 1: Telemetry & Status Bar -->
-                            <div class="flex items-center justify-between px-3.5 py-2 border-b border-slate-200/60 flex-wrap gap-2">
+                            <div class="flex items-center justify-between px-3.5 py-2 border-b border-stone-200/60 flex-wrap gap-2">
                                 <div class="flex items-center gap-2 flex-wrap">
-                                    <span class="font-bold text-slate-800 text-xs flex items-center gap-1.5">
-                                        <svg class="h-3.5 w-3.5 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <span class="font-bold text-stone-800 text-xs flex items-center gap-1.5">
+                                        <svg class="h-3.5 w-3.5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                         </svg>
                                         <span>Response Console</span>
@@ -1463,14 +1461,14 @@ const getMethodBadgeClass = (method) => {
 
                                     <!-- Loading State -->
                                     <div v-if="loading" class="flex items-center gap-1.5">
-                                        <span class="inline-flex items-center gap-1.5 rounded-full bg-amber-50 px-2.5 py-0.5 text-[11px] font-bold text-amber-700 ring-1 ring-inset ring-amber-600/30">
-                                            <svg class="h-3 w-3 animate-spin text-amber-600" viewBox="0 0 24 24" fill="none">
+                                        <span class="inline-flex items-center gap-1.5 rounded-full bg-orange-50 px-2.5 py-0.5 text-[11px] font-bold text-orange-700 ring-1 ring-inset ring-orange-600/30">
+                                            <svg class="h-3 w-3 animate-spin text-orange-600" viewBox="0 0 24 24" fill="none">
                                                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
                                             </svg>
                                             {{ executionMode === 'mock' ? 'Simulasi Mock...' : 'Kirim Request...' }}
                                         </span>
-                                        <span class="text-[10px] text-slate-400 font-mono animate-pulse">Menghitung...</span>
+                                        <span class="text-[10px] text-stone-400 font-mono animate-pulse">Menghitung...</span>
                                     </div>
 
                                     <!-- Executed or Preview State -->
@@ -1480,44 +1478,44 @@ const getMethodBadgeClass = (method) => {
                                             v-if="hasExecuted"
                                             class="inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[11px] font-bold ring-1 ring-inset"
                                             :class="(result?.status >= 200 && result?.status < 300)
-                                                ? 'bg-emerald-50 text-emerald-700 ring-emerald-600/30'
+                                                ? 'bg-blue-50 text-blue-700 ring-blue-600/30'
                                                 : 'bg-rose-50 text-rose-700 ring-rose-600/30'"
                                         >
-                                            <span class="h-1.5 w-1.5 rounded-full" :class="(result?.status >= 200 && result?.status < 300) ? 'bg-emerald-500' : 'bg-rose-500'"></span>
+                                            <span class="h-1.5 w-1.5 rounded-full" :class="(result?.status >= 200 && result?.status < 300) ? 'bg-blue-500' : 'bg-rose-500'"></span>
                                             {{ result?.status ?? 200 }} {{ result?.status === 200 ? 'OK' : 'Response' }}
                                         </span>
                                         <span
                                             v-else
-                                            class="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-0.5 text-[11px] font-semibold text-slate-600 ring-1 ring-inset ring-slate-300"
+                                            class="inline-flex items-center rounded-full bg-stone-100 px-2.5 py-0.5 text-[11px] font-semibold text-stone-600 ring-1 ring-inset ring-stone-300"
                                         >
                                             Preview Mock
                                         </span>
 
                                         <!-- Latency / Duration -->
-                                        <span v-if="result?.timeMs" class="inline-flex items-center gap-1 text-[11px] text-slate-600 font-mono font-medium bg-slate-100/80 px-2 py-0.5 rounded border border-slate-200">
-                                            <span class="text-slate-400">⏱️</span> {{ result.timeMs }} ms
+                                        <span v-if="result?.timeMs" class="inline-flex items-center gap-1 text-[11px] text-stone-600 font-mono font-medium bg-stone-100/80 px-2 py-0.5 rounded border border-stone-200">
+                                            <svg class="h-3.5 w-3.5 text-stone-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2"/></svg> { result.timeMs } ms
                                         </span>
 
                                         <!-- Payload Size -->
-                                        <span class="inline-flex items-center gap-1 text-[10px] text-slate-500 font-mono bg-slate-100/60 px-2 py-0.5 rounded border border-slate-200/80">
-                                            <span>📦</span> {{ payloadSize }}
+                                        <span class="inline-flex items-center gap-1 text-[10px] text-stone-500 font-mono bg-stone-100/60 px-2 py-0.5 rounded border border-stone-200/80">
+                                            <svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><path stroke-linecap="round" stroke-linejoin="round" d="M3.3 7l8.7 5 8.7-5M12 22V12"/></svg> { payloadSize }
                                         </span>
 
                                         <!-- Mode Indicator (Mock vs Live) -->
                                         <span
                                             class="rounded px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider"
-                                            :class="result?.type === 'live' ? 'bg-teal-100 text-teal-800 border border-teal-200' : 'bg-amber-100 text-amber-800 border border-amber-200'"
+                                            :class="result?.type === 'live' ? 'bg-blue-100 text-blue-800 border border-blue-200' : 'bg-orange-100 text-orange-800 border border-orange-200'"
                                         >
-                                            {{ result?.type === 'live' ? '🌐 Live BPJS' : '⚡ Mock Simulator' }}
+                                            {{ result?.type === 'live' ? 'Live BPJS' : 'Mock Simulator' }}
                                         </span>
 
                                         <!-- Fresh / Execution Timestamp Badge -->
                                         <span
                                             v-if="hasExecuted && executedAt"
                                             class="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-semibold transition"
-                                            :class="isFresh ? 'bg-emerald-100 text-emerald-800 ring-1 ring-emerald-400 font-bold' : 'bg-slate-100 text-slate-600'"
+                                            :class="isFresh ? 'bg-blue-100 text-blue-800 ring-1 ring-blue-400 font-bold' : 'bg-stone-100 text-stone-600'"
                                         >
-                                            <svg v-if="isFresh" class="h-3 w-3 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <svg v-if="isFresh" class="h-3 w-3 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
                                             </svg>
                                             {{ isFresh ? 'Baru Dihasilkan!' : executedAt }}
@@ -1529,11 +1527,11 @@ const getMethodBadgeClass = (method) => {
                                 <div class="flex items-center gap-2">
                                     <button
                                         type="button"
-                                        class="inline-flex items-center gap-1.5 rounded-md px-2.5 py-1 text-[11px] font-semibold text-slate-700 bg-white border border-slate-200 shadow-2xs hover:bg-slate-50 hover:text-slate-900 transition active:scale-95"
+                                        class="inline-flex items-center gap-1.5 rounded-md px-2.5 py-1 text-[11px] font-semibold text-stone-700 bg-white border border-stone-200 shadow-2xs hover:bg-stone-50 hover:text-stone-900 transition active:scale-95"
                                         @click="copyText('Response Body', responseTab === 'encrypted' ? rawBpjsResponseFormatted : (result?.body ?? {}))"
                                         title="Salin Data Respons Aktif"
                                     >
-                                        <svg class="h-3.5 w-3.5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <svg class="h-3.5 w-3.5 text-stone-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                                         </svg>
                                         <span>Salin Respons</span>
@@ -1542,18 +1540,18 @@ const getMethodBadgeClass = (method) => {
                             </div>
 
                             <!-- Tier 2: View Switcher Tabs -->
-                            <div class="flex items-center justify-between px-3 py-1.5 bg-slate-100/70 overflow-x-auto gap-2">
+                            <div class="flex items-center justify-between px-3 py-1.5 bg-stone-100/70 overflow-x-auto gap-2">
                                 <div class="flex items-center gap-1 shrink-0">
                                     <!-- Tab 1: Sebelum Enkripsi -->
                                     <button
                                         type="button"
                                         class="rounded-md px-2.5 py-1 text-xs font-semibold transition flex items-center gap-1.5 shrink-0"
                                         :class="(responseTab === 'plain' || responseTab === 'json')
-                                            ? 'bg-white text-slate-900 border border-slate-200 shadow-2xs font-bold'
-                                            : 'text-slate-600 hover:text-slate-900'"
+                                            ? 'bg-white text-stone-900 border border-stone-200 shadow-2xs font-bold'
+                                            : 'text-stone-600 hover:text-stone-900'"
                                         @click="responseTab = 'plain'"
                                     >
-                                        <span>🔓 Sebelum Enkripsi (Plain JSON)</span>
+                                        <span class="inline-flex items-center gap-1.5"><svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path stroke-linecap="round" stroke-linejoin="round" d="M7 11V7a5 5 0 019.9-1"/></svg>Sebelum Enkripsi (Plain JSON)</span>
                                     </button>
 
                                     <!-- Tab 2: Sesudah Enkripsi (Raw BPJS) -->
@@ -1561,12 +1559,12 @@ const getMethodBadgeClass = (method) => {
                                         type="button"
                                         class="rounded-md px-2.5 py-1 text-xs font-semibold transition flex items-center gap-1.5 shrink-0"
                                         :class="responseTab === 'encrypted'
-                                            ? 'bg-white text-slate-900 border border-slate-200 shadow-2xs font-bold'
-                                            : 'text-slate-600 hover:text-slate-900'"
+                                            ? 'bg-white text-stone-900 border border-stone-200 shadow-2xs font-bold'
+                                            : 'text-stone-600 hover:text-stone-900'"
                                         @click="responseTab = 'encrypted'"
                                     >
-                                        <span class="inline-block h-2 w-2 rounded-full" :class="encryptedPayloadData ? 'bg-teal-500 animate-pulse' : 'bg-slate-400'"></span>
-                                        <span>🔒 Sesudah Enkripsi (Raw BPJS)</span>
+                                        <span class="inline-block h-2 w-2 rounded-full" :class="encryptedPayloadData ? 'bg-blue-500 animate-pulse' : 'bg-stone-400'"></span>
+                                        <span class="inline-flex items-center gap-1.5"><svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path stroke-linecap="round" stroke-linejoin="round" d="M7 11V7a5 5 0 0110 0v4"/></svg>Sesudah Enkripsi (Raw BPJS)</span>
                                     </button>
 
                                     <!-- Tab 3: Bandingkan -->
@@ -1574,11 +1572,11 @@ const getMethodBadgeClass = (method) => {
                                         type="button"
                                         class="rounded-md px-2.5 py-1 text-xs font-semibold transition hidden sm:inline-flex items-center gap-1.5 shrink-0"
                                         :class="responseTab === 'compare'
-                                            ? 'bg-white text-slate-900 border border-slate-200 shadow-2xs font-bold'
-                                            : 'text-slate-600 hover:text-slate-900'"
+                                            ? 'bg-white text-stone-900 border border-stone-200 shadow-2xs font-bold'
+                                            : 'text-stone-600 hover:text-stone-900'"
                                         @click="responseTab = 'compare'"
                                     >
-                                        <span>⚖️ Bandingkan (Split View)</span>
+                                        <span class="inline-flex items-center gap-1.5"><svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18"/></svg>Bandingkan (Split View)</span>
                                     </button>
 
                                     <!-- Tab 4: Table View -->
@@ -1587,23 +1585,23 @@ const getMethodBadgeClass = (method) => {
                                         type="button"
                                         class="rounded-md px-2.5 py-1 text-xs font-semibold transition flex items-center gap-1.5 shrink-0"
                                         :class="responseTab === 'table'
-                                            ? 'bg-white text-slate-900 border border-slate-200 shadow-2xs font-bold'
-                                            : 'text-slate-600 hover:text-slate-900'"
+                                            ? 'bg-white text-stone-900 border border-stone-200 shadow-2xs font-bold'
+                                            : 'text-stone-600 hover:text-stone-900'"
                                         @click="responseTab = 'table'"
                                     >
-                                        <span>📊 Table View</span>
-                                        <span class="rounded bg-slate-200/80 px-1.5 py-0.2 text-[10px] font-mono font-bold text-slate-700">{{ responseSections.length }}</span>
+                                        <span class="inline-flex items-center gap-1.5"><svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path stroke-linecap="round" stroke-linejoin="round" d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>Table View</span>
+                                        <span class="rounded bg-stone-200/80 px-1.5 py-0.2 text-[10px] font-mono font-bold text-stone-700">{{ responseSections.length }}</span>
                                     </button>
                                 </div>
 
-                                <div class="hidden md:flex items-center gap-2 text-[11px] text-slate-500 font-medium">
-                                    <span v-if="responseTab === 'plain' || responseTab === 'json'" class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200/60 font-mono text-[10px]">
+                                <div class="hidden md:flex items-center gap-2 text-[11px] text-stone-500 font-medium">
+                                    <span v-if="responseTab === 'plain' || responseTab === 'json'" class="text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200/60 font-mono text-[10px]">
                                         Format SIMRS (Decrypted)
                                     </span>
-                                    <span v-else-if="responseTab === 'encrypted'" class="text-teal-700 bg-teal-50 px-2 py-0.5 rounded border border-teal-200/60 font-mono text-[10px]">
+                                    <span v-else-if="responseTab === 'encrypted'" class="text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200/60 font-mono text-[10px]">
                                         AES-256-CBC + LZ-String
                                     </span>
-                                    <span v-else-if="responseTab === 'compare'" class="text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded border border-indigo-200/60 font-mono text-[10px]">
+                                    <span v-else-if="responseTab === 'compare'" class="text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200/60 font-mono text-[10px]">
                                         Side-by-side Inspection
                                     </span>
                                 </div>
@@ -1611,33 +1609,33 @@ const getMethodBadgeClass = (method) => {
                         </div>
 
                         <!-- Response Body Viewer (with Dedicated Loading Console & Skeleton) -->
-                        <div class="flex-1 overflow-y-auto bg-slate-950/95 text-emerald-300 relative">
+                        <div class="flex-1 overflow-y-auto bg-stone-950/95 text-blue-300 relative">
                             <!-- LOADING CONSOLE & SKELETON STATE -->
-                            <div v-if="loading" class="h-full flex flex-col justify-between p-4 font-mono text-xs text-slate-300 bg-slate-950">
+                            <div v-if="loading" class="h-full flex flex-col justify-between p-4 font-mono text-xs text-stone-300 bg-stone-950">
                                 <div class="space-y-3.5">
                                     <!-- Console Status Bar -->
-                                    <div class="flex items-center justify-between border-b border-slate-800 pb-2 text-[11px] text-slate-400">
+                                    <div class="flex items-center justify-between border-b border-stone-800 pb-2 text-[11px] text-stone-400">
                                         <div class="flex items-center gap-2">
-                                            <div class="h-2 w-2 rounded-full bg-teal-400 animate-ping"></div>
-                                            <span class="font-bold text-teal-400 tracking-wider">MOCK SIMULATOR RUNNING</span>
+                                            <div class="h-2 w-2 rounded-full bg-blue-400 animate-ping"></div>
+                                            <span class="font-bold text-blue-400 tracking-wider">MOCK SIMULATOR RUNNING</span>
                                         </div>
-                                        <span class="font-mono text-slate-400 font-semibold">Tahap {{ loadingStep }}/3</span>
+                                        <span class="font-mono text-stone-400 font-semibold">Tahap {{ loadingStep }}/3</span>
                                     </div>
 
                                     <!-- Telemetry log stream -->
                                     <div class="space-y-2 text-xs">
-                                        <div class="flex items-center gap-2 text-slate-300">
-                                            <span class="text-teal-400 font-bold">&gt;</span>
-                                            <span class="text-slate-400">Target:</span>
-                                            <span class="text-emerald-400 font-mono">{{ activeEndpoint?.method }} {{ requestTargetUrl }}</span>
+                                        <div class="flex items-center gap-2 text-stone-300">
+                                            <span class="text-blue-400 font-bold">&gt;</span>
+                                            <span class="text-stone-400">Target:</span>
+                                            <span class="text-blue-400 font-mono">{{ activeEndpoint?.method }} {{ requestTargetUrl }}</span>
                                         </div>
-                                        <div class="flex items-center gap-2 text-slate-400">
-                                            <span class="text-teal-400 font-bold">&gt;</span>
+                                        <div class="flex items-center gap-2 text-stone-400">
+                                            <span class="text-blue-400 font-bold">&gt;</span>
                                             <span>Skenario:</span>
-                                            <span class="text-amber-300 font-semibold font-mono">{{ mockScenario === 'success' ? '200 OK (Data Sukses)' : '400 Bad Request (Simulasi Error)' }}</span>
+                                            <span class="text-orange-300 font-semibold font-mono">{{ mockScenario === 'success' ? '200 OK (Data Sukses)' : '400 Bad Request (Simulasi Error)' }}</span>
                                         </div>
-                                        <div class="flex items-center gap-2 text-teal-300 font-semibold">
-                                            <svg class="h-3.5 w-3.5 animate-spin text-teal-400 shrink-0" viewBox="0 0 24 24" fill="none">
+                                        <div class="flex items-center gap-2 text-blue-300 font-semibold">
+                                            <svg class="h-3.5 w-3.5 animate-spin text-blue-400 shrink-0" viewBox="0 0 24 24" fill="none">
                                                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
                                             </svg>
@@ -1647,19 +1645,19 @@ const getMethodBadgeClass = (method) => {
 
                                     <!-- Shimmering JSON Skeleton Lines -->
                                     <div class="pt-3 space-y-2 opacity-75">
-                                        <div class="h-3 bg-slate-800 rounded w-1/5 animate-pulse"></div>
-                                        <div class="h-3 bg-slate-800/80 rounded w-1/2 animate-pulse pl-4"></div>
-                                        <div class="h-3 bg-slate-800/70 rounded w-3/4 animate-pulse pl-8"></div>
-                                        <div class="h-3 bg-slate-800/60 rounded w-2/3 animate-pulse pl-8"></div>
-                                        <div class="h-3 bg-slate-800/50 rounded w-1/3 animate-pulse pl-4"></div>
-                                        <div class="h-3 bg-slate-800/40 rounded w-1/6 animate-pulse"></div>
+                                        <div class="h-3 bg-stone-800 rounded w-1/5 animate-pulse"></div>
+                                        <div class="h-3 bg-stone-800/80 rounded w-1/2 animate-pulse pl-4"></div>
+                                        <div class="h-3 bg-stone-800/70 rounded w-3/4 animate-pulse pl-8"></div>
+                                        <div class="h-3 bg-stone-800/60 rounded w-2/3 animate-pulse pl-8"></div>
+                                        <div class="h-3 bg-stone-800/50 rounded w-1/3 animate-pulse pl-4"></div>
+                                        <div class="h-3 bg-stone-800/40 rounded w-1/6 animate-pulse"></div>
                                     </div>
                                 </div>
 
                                 <!-- Console Footer -->
-                                <div class="flex items-center justify-between border-t border-slate-800/80 pt-2 text-[10px] text-slate-500 font-sans">
+                                <div class="flex items-center justify-between border-t border-stone-800/80 pt-2 text-[10px] text-stone-500 font-sans">
                                     <span>Memproses payload respons & dekripsi token HMAC...</span>
-                                    <span class="font-mono text-teal-400 font-semibold animate-pulse">Mohon tunggu...</span>
+                                    <span class="font-mono text-blue-400 font-semibold animate-pulse">Mohon tunggu...</span>
                                 </div>
                             </div>
 
@@ -1667,53 +1665,53 @@ const getMethodBadgeClass = (method) => {
                             <template v-else>
                                 <!-- 1. Sebelum Enkripsi (Clean Decrypted JSON) -->
                                 <div v-if="responseTab === 'plain' || responseTab === 'json'" class="h-full flex flex-col">
-                                    <div class="border-b border-slate-800 bg-slate-900/90 px-3 py-2 flex items-center justify-between text-[11px] text-slate-400">
-                                        <div class="flex items-center gap-2 text-emerald-400 font-semibold">
-                                            <div class="p-1 rounded bg-emerald-950/80 border border-emerald-800/80 text-emerald-400">
+                                    <div class="border-b border-stone-800 bg-stone-900/90 px-3 py-2 flex items-center justify-between text-[11px] text-stone-400">
+                                        <div class="flex items-center gap-2 text-blue-400 font-semibold">
+                                            <div class="p-1 rounded bg-blue-950/80 border border-blue-800/80 text-blue-400">
                                                 <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
                                                 </svg>
                                             </div>
                                             <div>
-                                                <span class="font-bold text-emerald-300">Sebelum Enkripsi / Hasil Dekripsi (Plain JSON)</span>
-                                                <span class="block text-[10px] text-slate-400 font-normal">Format yang langsung dikonsumsi aplikasi SIMRS Anda</span>
+                                                <span class="font-bold text-blue-300">Sebelum Enkripsi / Hasil Dekripsi (Plain JSON)</span>
+                                                <span class="block text-[10px] text-stone-400 font-normal">Format yang langsung dikonsumsi aplikasi SIMRS Anda</span>
                                             </div>
                                         </div>
-                                        <span class="rounded bg-emerald-950/90 border border-emerald-700/60 px-2 py-0.5 text-[10px] font-mono font-bold text-emerald-300">
+                                        <span class="rounded bg-blue-950/90 border border-blue-700/60 px-2 py-0.5 text-[10px] font-mono font-bold text-blue-300">
                                             OUTPUT SIMRS
                                         </span>
                                     </div>
                                     <div class="p-3 flex-1 overflow-y-auto">
-                                        <pre class="font-mono text-xs leading-relaxed overflow-x-auto whitespace-pre text-emerald-300">{{ pretty(result?.body ?? {}) }}</pre>
+                                        <pre class="font-mono text-xs leading-relaxed overflow-x-auto whitespace-pre text-blue-300">{{ pretty(result?.body ?? {}) }}</pre>
                                     </div>
                                 </div>
 
                                 <!-- 2. Sesudah Enkripsi (Raw Ciphertext BPJS) -->
                                 <div v-else-if="responseTab === 'encrypted'" class="h-full flex flex-col">
-                                    <div class="border-b border-slate-800 bg-slate-900/95 px-3 py-2 space-y-2 text-[11px]">
+                                    <div class="border-b border-stone-800 bg-stone-900/95 px-3 py-2 space-y-2 text-[11px]">
                                         <div class="flex flex-wrap items-center justify-between gap-2">
-                                            <div class="flex items-center gap-2 text-teal-400 font-bold">
-                                                <div class="p-1 rounded bg-teal-950/80 border border-teal-800/80 text-teal-400">
+                                            <div class="flex items-center gap-2 text-blue-400 font-bold">
+                                                <div class="p-1 rounded bg-blue-950/80 border border-blue-800/80 text-blue-400">
                                                     <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
                                                     </svg>
                                                 </div>
                                                 <div>
-                                                    <span class="text-teal-300 font-bold">Sesudah Enkripsi (Payload Asli BPJS di Wire Internet)</span>
-                                                    <span class="block text-[10px] text-slate-400 font-normal">Transmisi data aman berstandar kriptografi BPJS Kesehatan</span>
+                                                    <span class="text-blue-300 font-bold">Sesudah Enkripsi (Payload Asli BPJS di Wire Internet)</span>
+                                                    <span class="block text-[10px] text-stone-400 font-normal">Transmisi data aman berstandar kriptografi BPJS Kesehatan</span>
                                                 </div>
                                             </div>
                                             <div class="flex items-center gap-1.5">
                                                 <button
                                                     type="button"
-                                                    class="rounded bg-teal-950 border border-teal-800/80 px-2.5 py-1 text-[10px] font-semibold text-teal-300 hover:bg-teal-900 transition active:scale-95"
+                                                    class="rounded bg-blue-950 border border-blue-800/80 px-2.5 py-1 text-[10px] font-semibold text-blue-300 hover:bg-blue-900 transition active:scale-95"
                                                     @click="copyCiphertextOnly"
                                                 >
                                                     Salin Ciphertext Saja
                                                 </button>
                                                 <button
                                                     type="button"
-                                                    class="rounded bg-slate-800 px-2.5 py-1 text-[10px] font-semibold text-slate-300 hover:bg-slate-700 transition active:scale-95"
+                                                    class="rounded bg-stone-800 px-2.5 py-1 text-[10px] font-semibold text-stone-300 hover:bg-stone-700 transition active:scale-95"
                                                     @click="copyText('Raw BPJS Payload', rawBpjsResponseFormatted)"
                                                 >
                                                     Salin JSON BPJS Utuh
@@ -1723,93 +1721,93 @@ const getMethodBadgeClass = (method) => {
 
                                         <!-- Cryptographic parameter badges -->
                                         <div class="grid grid-cols-2 sm:grid-cols-4 gap-1.5 font-mono text-[10px]">
-                                            <div class="rounded bg-slate-950 p-2 border border-slate-800/70">
-                                                <div class="text-slate-500 text-[9px] uppercase font-sans">Metode Cipher</div>
-                                                <div class="text-emerald-400 font-bold truncate">{{ encryptedPayloadData?.crypto_details?.algorithm ?? 'AES-256-CBC' }}</div>
+                                            <div class="rounded bg-stone-950 p-2 border border-stone-800/70">
+                                                <div class="text-stone-500 text-[9px] uppercase font-sans">Metode Cipher</div>
+                                                <div class="text-blue-400 font-bold truncate">{{ encryptedPayloadData?.crypto_details?.algorithm ?? 'AES-256-CBC' }}</div>
                                             </div>
-                                            <div class="rounded bg-slate-950 p-2 border border-slate-800/70">
-                                                <div class="text-slate-500 text-[9px] uppercase font-sans">Kompresi</div>
-                                                <div class="text-amber-400 font-bold truncate">{{ encryptedPayloadData?.crypto_details?.compression ?? 'LZ-String' }}</div>
+                                            <div class="rounded bg-stone-950 p-2 border border-stone-800/70">
+                                                <div class="text-stone-500 text-[9px] uppercase font-sans">Kompresi</div>
+                                                <div class="text-orange-400 font-bold truncate">{{ encryptedPayloadData?.crypto_details?.compression ?? 'LZ-String' }}</div>
                                             </div>
-                                            <div class="rounded bg-slate-950 p-2 border border-slate-800/70">
-                                                <div class="text-slate-500 text-[9px] uppercase font-sans">Formula Kunci</div>
-                                                <div class="text-sky-400 font-bold truncate" title="ConsID + SecretKey + Timestamp">ConsID+Secret+Time</div>
+                                            <div class="rounded bg-stone-950 p-2 border border-stone-800/70">
+                                                <div class="text-stone-500 text-[9px] uppercase font-sans">Formula Kunci</div>
+                                                <div class="text-blue-400 font-bold truncate" title="ConsID + SecretKey + Timestamp">ConsID+Secret+Time</div>
                                             </div>
-                                            <div class="rounded bg-slate-950 p-2 border border-slate-800/70">
-                                                <div class="text-slate-500 text-[9px] uppercase font-sans">Ukuran Data Wire</div>
-                                                <div class="text-teal-300 font-bold truncate">
-                                                    {{ encryptedPayloadData?.crypto_details?.plain_byte_size ?? 0 }} B ➔ {{ encryptedPayloadData?.crypto_details?.encrypted_byte_size ?? 0 }} B
+                                            <div class="rounded bg-stone-950 p-2 border border-stone-800/70">
+                                                <div class="text-stone-500 text-[9px] uppercase font-sans">Ukuran Data Wire</div>
+                                                <div class="text-blue-300 font-bold truncate">
+                                                    {{ encryptedPayloadData?.crypto_details?.plain_byte_size ?? 0 }} B → {{ encryptedPayloadData?.crypto_details?.encrypted_byte_size ?? 0 }} B
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="p-3 flex-1 overflow-y-auto">
-                                        <pre class="font-mono text-xs leading-relaxed overflow-x-auto whitespace-pre text-teal-300">{{ rawBpjsResponseFormatted }}</pre>
+                                        <pre class="font-mono text-xs leading-relaxed overflow-x-auto whitespace-pre text-blue-300">{{ rawBpjsResponseFormatted }}</pre>
                                     </div>
                                 </div>
 
                                 <!-- 3. Bandingkan (Split View: Sebelum vs Sesudah) -->
                                 <div v-else-if="responseTab === 'compare'" class="h-full flex flex-col">
-                                    <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-slate-800 flex-1 overflow-hidden">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-stone-800 flex-1 overflow-hidden">
                                         <!-- Left: Sebelum Enkripsi -->
                                         <div class="flex flex-col h-full overflow-hidden">
-                                            <div class="border-b border-slate-800 bg-slate-900/90 px-2.5 py-1.5 flex items-center justify-between text-[11px] text-emerald-400">
+                                            <div class="border-b border-stone-800 bg-stone-900/90 px-2.5 py-1.5 flex items-center justify-between text-[11px] text-blue-400">
                                                 <span class="font-bold flex items-center gap-1">
-                                                    <span>🔓</span> Sebelum Enkripsi (Clean JSON)
+                                                    <svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path stroke-linecap="round" stroke-linejoin="round" d="M7 11V7a5 5 0 019.9-1"/></svg>Sebelum Enkripsi (Clean JSON)
                                                 </span>
                                                 <button
                                                     type="button"
-                                                    class="text-[10px] text-slate-400 hover:text-white"
+                                                    class="text-[10px] text-stone-400 hover:text-white"
                                                     @click="copyText('Clean JSON', result?.body ?? {})"
                                                 >
                                                     Salin
                                                 </button>
                                             </div>
                                             <div class="p-2.5 flex-1 overflow-y-auto">
-                                                <pre class="font-mono text-[11px] leading-relaxed overflow-x-auto whitespace-pre text-emerald-300">{{ pretty(result?.body ?? {}) }}</pre>
+                                                <pre class="font-mono text-[11px] leading-relaxed overflow-x-auto whitespace-pre text-blue-300">{{ pretty(result?.body ?? {}) }}</pre>
                                             </div>
                                         </div>
 
                                         <!-- Right: Sesudah Enkripsi -->
                                         <div class="flex flex-col h-full overflow-hidden">
-                                            <div class="border-b border-slate-800 bg-slate-900/90 px-2.5 py-1.5 flex items-center justify-between text-[11px] text-teal-400">
+                                            <div class="border-b border-stone-800 bg-stone-900/90 px-2.5 py-1.5 flex items-center justify-between text-[11px] text-blue-400">
                                                 <span class="font-bold flex items-center gap-1">
-                                                    <span>🔒</span> Sesudah Enkripsi (Raw BPJS)
+                                                    <svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path stroke-linecap="round" stroke-linejoin="round" d="M7 11V7a5 5 0 0110 0v4"/></svg>Sesudah Enkripsi (Raw BPJS)
                                                 </span>
                                                 <button
                                                     type="button"
-                                                    class="text-[10px] text-teal-300 hover:text-white"
+                                                    class="text-[10px] text-blue-300 hover:text-white"
                                                     @click="copyText('Raw BPJS', rawBpjsResponseFormatted)"
                                                 >
                                                     Salin
                                                 </button>
                                             </div>
                                             <div class="p-2.5 flex-1 overflow-y-auto">
-                                                <pre class="font-mono text-[11px] leading-relaxed overflow-x-auto whitespace-pre text-teal-300">{{ rawBpjsResponseFormatted }}</pre>
+                                                <pre class="font-mono text-[11px] leading-relaxed overflow-x-auto whitespace-pre text-blue-300">{{ rawBpjsResponseFormatted }}</pre>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <!-- 4. Table View (for array responses) -->
-                                <div v-else-if="responseTab === 'table'" class="space-y-3 bg-white p-3 text-slate-800">
-                                    <div v-for="section in responseSections" :key="section.key" class="border border-slate-200 rounded overflow-hidden">
-                                        <div class="bg-slate-50 px-3 py-1.5 border-b border-slate-200 flex items-center justify-between text-xs">
-                                            <span class="font-bold text-slate-800 uppercase">{{ section.key }}</span>
-                                            <span class="text-[10px] text-slate-500 font-semibold">{{ section.rows.length }} baris data</span>
+                                <div v-else-if="responseTab === 'table'" class="space-y-3 bg-white p-3 text-stone-800">
+                                    <div v-for="section in responseSections" :key="section.key" class="border border-stone-200 rounded overflow-hidden">
+                                        <div class="bg-stone-50 px-3 py-1.5 border-b border-stone-200 flex items-center justify-between text-xs">
+                                            <span class="font-bold text-stone-800 uppercase">{{ section.key }}</span>
+                                            <span class="text-[10px] text-stone-500 font-semibold">{{ section.rows.length }} baris data</span>
                                         </div>
                                         <div class="overflow-x-auto">
                                             <table class="w-full text-left text-xs">
                                                 <thead>
-                                                    <tr class="bg-slate-50/70 border-b border-slate-200 text-slate-600 font-semibold">
-                                                        <th v-for="col in section.columns" :key="col" class="p-2 border-r border-slate-100 last:border-r-0 whitespace-nowrap">
+                                                    <tr class="bg-stone-50/70 border-b border-stone-200 text-stone-600 font-semibold">
+                                                        <th v-for="col in section.columns" :key="col" class="p-2 border-r border-stone-100 last:border-r-0 whitespace-nowrap">
                                                             {{ col }}
                                                         </th>
                                                     </tr>
                                                 </thead>
-                                                <tbody class="divide-y divide-slate-100">
-                                                    <tr v-for="(row, rIdx) in section.rows" :key="rIdx" class="hover:bg-slate-50/50">
-                                                        <td v-for="col in section.columns" :key="col" class="p-2 border-r border-slate-100 last:border-r-0 whitespace-nowrap font-mono text-[11px] text-slate-800">
+                                                <tbody class="divide-y divide-stone-100">
+                                                    <tr v-for="(row, rIdx) in section.rows" :key="rIdx" class="hover:bg-stone-50/50">
+                                                        <td v-for="col in section.columns" :key="col" class="p-2 border-r border-stone-100 last:border-r-0 whitespace-nowrap font-mono text-[11px] text-stone-800">
                                                             {{ row[col] !== null && row[col] !== undefined ? row[col] : '-' }}
                                                         </td>
                                                     </tr>
@@ -1822,14 +1820,14 @@ const getMethodBadgeClass = (method) => {
                         </div>
 
                         <!-- Footer Info Bar -->
-                        <div class="border-t border-slate-200 bg-slate-50 px-3 py-1.5 text-[10px] text-slate-500 flex items-center justify-between">
+                        <div class="border-t border-stone-200 bg-stone-50 px-3 py-1.5 text-[10px] text-stone-500 flex items-center justify-between">
                             <span class="truncate">
-                                <strong class="text-slate-700">Status Engine:</strong>
-                                <span v-if="loading" class="text-amber-600 font-semibold ml-1">Sedang menjalankan pengujian simulasi...</span>
-                                <span v-else-if="hasExecuted" class="text-emerald-700 font-semibold ml-1">Data simulasi berhasil dihasilkan sesuai parameter input</span>
-                                <span v-else class="text-slate-500 ml-1">Mode Mock Preview (Klik "Uji Mock" untuk mengeksekusi parameter)</span>
+                                <strong class="text-stone-700">Status Engine:</strong>
+                                <span v-if="loading" class="text-orange-600 font-semibold ml-1">Sedang menjalankan pengujian simulasi...</span>
+                                <span v-else-if="hasExecuted" class="text-blue-700 font-semibold ml-1">Data simulasi berhasil dihasilkan sesuai parameter input</span>
+                                <span v-else class="text-stone-500 ml-1">Mode Mock Preview (Klik "Uji Mock" untuk mengeksekusi parameter)</span>
                             </span>
-                            <span v-if="copiedState" class="font-semibold text-emerald-600">
+                            <span v-if="copiedState" class="font-semibold text-blue-600">
                                 {{ copiedState }}
                             </span>
                         </div>
@@ -1839,21 +1837,21 @@ const getMethodBadgeClass = (method) => {
         </div>
 
         <!-- Quota Reached Modal (50/50 Limit) -->
-        <div v-if="showQuotaModal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 p-4 backdrop-blur-xs">
-            <div class="w-full max-w-md rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl space-y-4">
+        <div v-if="showQuotaModal" class="fixed inset-0 z-50 flex items-center justify-center bg-stone-900/60 p-4 backdrop-blur-xs">
+            <div class="w-full max-w-md rounded-2xl border border-stone-200 bg-white p-6 shadow-2xl space-y-4">
                 <div class="flex items-center gap-3">
-                    <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-100 text-amber-700 shrink-0">
+                    <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-orange-100 text-orange-700 shrink-0">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                         </svg>
                     </div>
                     <div>
-                        <h3 class="text-base font-bold text-slate-900">Batas Uji Coba Harian Tercapai ({{ quotaLimit }}/{{ quotaLimit }})</h3>
-                        <p class="text-xs text-slate-500">Kuota gratis {{ quotaLimit }} request untuk hari ini telah habis.</p>
+                        <h3 class="text-base font-bold text-stone-900">Batas Uji Coba Harian Tercapai ({{ quotaLimit }}/{{ quotaLimit }})</h3>
+                        <p class="text-xs text-stone-500">Kuota gratis {{ quotaLimit }} request untuk hari ini telah habis.</p>
                     </div>
                 </div>
 
-                <p class="text-xs text-slate-600 leading-relaxed">
+                <p class="text-xs text-stone-600 leading-relaxed">
                     Untuk uji coba selanjutnya atau kebutuhan integrasi tanpa batas harian, silakan aktifkan <strong>Lisensi Bulanan ({{ formatRupiah(settings.pricing_monthly_price ?? 450000) }} / bulan)</strong> untuk mendapatkan <strong>Akses Semaunya (Unlimited Request)</strong> ke seluruh 209 endpoint.
                 </p>
 
@@ -1864,14 +1862,14 @@ const getMethodBadgeClass = (method) => {
                     </div>
                     <p class="text-[11px] text-rose-800 leading-snug">
                         Sistem akan mereset dan membuka kembali {{ quotaLimit }} request uji coba pada:
-                        <strong class="font-bold text-slate-900 block mt-0.5">
+                        <strong class="font-bold text-stone-900 block mt-0.5">
                             {{ nextResetInfo.dateStr }} pukul {{ nextResetInfo.timeStr }} ({{ nextResetInfo.remainingStr }})
                         </strong>
                     </p>
                 </div>
 
-                <div class="rounded-xl border border-teal-200 bg-teal-50/70 p-3 space-y-2 text-xs">
-                    <div class="flex items-center justify-between font-bold text-teal-900">
+                <div class="rounded-xl border border-blue-200 bg-blue-50/70 p-3 space-y-2 text-xs">
+                    <div class="flex items-center justify-between font-bold text-blue-900">
                         <div class="flex items-center gap-1.5">
                             <span>Lisensi Bulanan (Akses Semaunya)</span>
                             <span v-if="settings.pricing_monthly_promo_active && settings.pricing_monthly_promo_badge" class="rounded bg-rose-600 px-1.5 py-0.5 text-[10px] font-extrabold text-white animate-pulse">
@@ -1879,27 +1877,27 @@ const getMethodBadgeClass = (method) => {
                             </span>
                         </div>
                         <div class="text-right">
-                            <span v-if="settings.pricing_monthly_promo_active && settings.pricing_monthly_strike_price" class="text-[11px] text-slate-400 line-through mr-1 block">
+                            <span v-if="settings.pricing_monthly_promo_active && settings.pricing_monthly_strike_price" class="text-[11px] text-stone-400 line-through mr-1 block">
                                 {{ formatRupiah(settings.pricing_monthly_strike_price) }}
                             </span>
-                            <span class="text-sm font-extrabold text-teal-800">{{ formatRupiah(settings.pricing_monthly_price ?? 450000) }} / bln</span>
+                            <span class="text-sm font-extrabold text-blue-800">{{ formatRupiah(settings.pricing_monthly_price ?? 450000) }} / bln</span>
                         </div>
                     </div>
-                    <div v-if="settings.pricing_monthly_promo_active && settings.pricing_monthly_promo_code" class="rounded-lg bg-amber-100/80 border border-amber-300 p-2 flex items-center justify-between text-[11px] text-amber-950 font-medium">
-                        <span>Kupon Promo: <strong class="font-mono font-bold text-amber-900 bg-white px-1.5 py-0.5 rounded border border-amber-200">{{ settings.pricing_monthly_promo_code }}</strong></span>
-                        <span class="text-[10px] text-amber-800 font-bold">Diskon Terpasang</span>
+                    <div v-if="settings.pricing_monthly_promo_active && settings.pricing_monthly_promo_code" class="rounded-lg bg-orange-100/80 border border-orange-300 p-2 flex items-center justify-between text-[11px] text-orange-950 font-medium">
+                        <span>Kupon Promo: <strong class="font-mono font-bold text-orange-900 bg-white px-1.5 py-0.5 rounded border border-orange-200">{{ settings.pricing_monthly_promo_code }}</strong></span>
+                        <span class="text-[10px] text-orange-800 font-bold">Diskon Terpasang</span>
                     </div>
-                    <ul class="text-[11px] text-teal-800 space-y-1">
-                        <li>✓ Unlimited request tanpa batas kuota {{ quotaLimit }}/hari</li>
-                        <li>✓ Akses penuh simulator & live proxy 209 endpoint</li>
-                        <li>✓ Akun aktif 30 hari penuh</li>
+                    <ul class="text-[11px] text-blue-800 space-y-1">
+                        <li class="flex items-start gap-1.5"><svg class="mt-0.5 h-3.5 w-3.5 shrink-0 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>Unlimited request tanpa batas kuota {{ quotaLimit }}/hari</span></li>
+                        <li class="flex items-start gap-1.5"><svg class="mt-0.5 h-3.5 w-3.5 shrink-0 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>Akses penuh simulator &amp; live proxy 209 endpoint</span></li>
+                        <li class="flex items-start gap-1.5"><svg class="mt-0.5 h-3.5 w-3.5 shrink-0 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>Akun aktif 30 hari penuh</span></li>
                     </ul>
                 </div>
 
                 <div class="flex items-center justify-end gap-2 pt-2">
                     <button
                         type="button"
-                        class="rounded-lg border border-slate-300 bg-white px-3.5 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition"
+                        class="rounded-lg border border-stone-300 bg-white px-3.5 py-2 text-xs font-semibold text-stone-700 hover:bg-stone-50 transition"
                         @click="showQuotaModal = false"
                     >
                         Tutup
@@ -1907,7 +1905,7 @@ const getMethodBadgeClass = (method) => {
                     <a
                         :href="waUpgradeUrl"
                         target="_blank"
-                        class="inline-flex items-center gap-1.5 rounded-lg bg-teal-800 px-4 py-2 text-xs font-bold text-white hover:bg-teal-900 transition shadow-xs"
+                        class="inline-flex items-center gap-1.5 rounded-lg bg-orange-500 px-4 py-2 text-xs font-bold text-white hover:bg-orange-600 transition shadow-xs"
                     >
                         <span>Akses Semaunya via WhatsApp</span>
                         <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

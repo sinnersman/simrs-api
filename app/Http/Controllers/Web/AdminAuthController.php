@@ -16,6 +16,7 @@ class AdminAuthController extends Controller
     {
         return Inertia::render('Auth/Login', [
             'trialLimit' => (int) \App\Models\SiteSetting::get('pricing_trial_limit', 50),
+            'isLocal' => app()->isLocal(),
         ]);
     }
 

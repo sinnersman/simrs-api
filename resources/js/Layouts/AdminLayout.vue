@@ -16,10 +16,17 @@ defineProps({
 });
 
 const isMobileSidebarOpen = ref(false);
+const topSearch = ref('');
 
 const user = computed(() => page.props.auth?.user ?? null);
 const currentPath = computed(() => page.url ?? '');
 const trialLimit = computed(() => Number(page.props.site_settings?.pricing_trial_limit ?? 50));
+
+const submitTopSearch = () => {
+    router.get('/admin/dashboard', {
+        search: topSearch.value ? topSearch.value : undefined,
+    });
+};
 
 const isActiveRoute = (href) => {
     if (href === '/') {
@@ -36,7 +43,7 @@ const navigationGroups = computed(() => {
                 {
                     label: 'Dashboard Gateway',
                     href: '/admin/dashboard',
-                    icon: 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z',
+                    icon: 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z',
                 },
                 {
                     label: 'Monitoring Task ID Antrol',
@@ -131,25 +138,25 @@ const logout = () => {
 </script>
 
 <template>
-    <div class="min-h-screen bg-slate-100/70 text-slate-800 flex">
+    <div class="min-h-screen bg-stone-100 text-stone-800 flex">
         <!-- ========================================== -->
-        <!-- 1. DESKTOP SIDEBAR (Clean Enterprise White) -->
+        <!-- 1. DESKTOP SIDEBAR (Navy)                  -->
         <!-- ========================================== -->
-        <aside class="hidden lg:fixed lg:inset-y-0 lg:left-0 lg:flex lg:w-64 lg:flex-col bg-white border-r border-slate-200/90 z-40 text-slate-700 shadow-2xs select-none">
+        <aside class="hidden lg:fixed lg:inset-y-0 lg:left-0 lg:flex lg:w-64 lg:flex-col bg-blue-950 border-r border-blue-900 z-40 text-blue-100 select-none">
             <!-- Brand & Product Header -->
-            <div class="flex h-16 shrink-0 items-center px-5 border-b border-slate-200/80 bg-white">
+            <div class="flex h-16 shrink-0 items-center px-5 border-b border-blue-900 bg-blue-950">
                 <a href="/" class="flex items-center gap-3 group" title="Kembali ke Beranda">
-                    <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-teal-800 text-white font-bold shadow-xs group-hover:bg-teal-900 transition shrink-0">
+                    <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-orange-500 text-white font-bold shadow-xs group-hover:bg-orange-600 transition shrink-0">
                         <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                         </svg>
                     </div>
                     <div>
                         <div class="flex items-center gap-1.5">
-                            <span class="font-bold text-sm text-slate-900 tracking-tight">SIMRS Gateway</span>
-                            <span class="rounded bg-teal-50 text-teal-800 border border-teal-200/80 px-1.5 py-0.2 text-[10px] font-mono font-bold">v3.0</span>
+                            <span class="font-bold text-sm text-white tracking-tight">SIMRS Gateway</span>
+                            <span class="rounded bg-blue-900 text-orange-300 border border-blue-800 px-1.5 py-0.2 text-[10px] font-mono font-bold">v3.0</span>
                         </div>
-                        <p class="text-[11px] text-slate-400 font-medium">Console Administrator</p>
+                        <p class="text-[11px] text-blue-300 font-medium">Setiawandev &middot; Console Administrator</p>
                     </div>
                 </a>
             </div>
@@ -157,7 +164,7 @@ const logout = () => {
             <!-- Navigation Links by Category -->
             <nav class="flex-1 overflow-y-auto px-3.5 py-5 space-y-6">
                 <div v-for="(group, gIdx) in navigationGroups" :key="gIdx" class="space-y-1">
-                    <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider px-3 mb-1.5">
+                    <p class="text-[11px] font-bold text-blue-300/70 uppercase tracking-wider px-3 mb-1.5">
                         {{ group.title }}
                     </p>
 
@@ -169,13 +176,13 @@ const logout = () => {
                         :download="item.download || null"
                         class="group flex items-center justify-between rounded-xl px-3 py-2.5 text-xs font-semibold transition"
                         :class="isActiveRoute(item.href)
-                            ? 'bg-teal-800 text-white shadow-xs font-bold'
-                            : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'"
+                            ? 'bg-orange-500 text-white shadow-xs font-bold'
+                            : 'text-blue-100/70 hover:bg-blue-900 hover:text-white'"
                     >
                         <div class="flex items-center gap-2.5 min-w-0">
                             <svg
                                 class="h-4 w-4 shrink-0 transition"
-                                :class="isActiveRoute(item.href) ? 'text-teal-200' : 'text-slate-400 group-hover:text-slate-600'"
+                                :class="isActiveRoute(item.href) ? 'text-white' : 'text-blue-300 group-hover:text-orange-300'"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -189,22 +196,22 @@ const logout = () => {
             </nav>
 
             <!-- Bottom User Profile Row & Logout Button -->
-            <div class="p-3 border-t border-slate-200/80 bg-slate-50/70">
-                <div class="flex items-center justify-between gap-2.5 p-2 rounded-xl bg-white border border-slate-200/80 shadow-2xs">
+            <div class="p-3 border-t border-blue-900 bg-blue-950">
+                <div class="flex items-center justify-between gap-2.5 p-2 rounded-xl bg-blue-900 border border-blue-800 shadow-2xs">
                     <div class="flex items-center gap-2.5 min-w-0">
-                        <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-teal-800 text-white font-bold text-xs shrink-0 shadow-2xs">
+                        <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-orange-500 text-white font-bold text-xs shrink-0 shadow-2xs">
                             {{ (user?.name || 'A').charAt(0).toUpperCase() }}
                         </div>
                         <div class="min-w-0">
-                            <p class="text-xs font-bold text-slate-900 truncate">{{ user?.name || 'Superadmin' }}</p>
-                            <p class="text-[10px] text-slate-400 truncate">{{ user?.email }}</p>
+                            <p class="text-xs font-bold text-white truncate">{{ user?.name || 'Superadmin' }}</p>
+                            <p class="text-[10px] text-blue-300 truncate">{{ user?.email }}</p>
                         </div>
                     </div>
 
                     <button
                         type="button"
                         @click="logout"
-                        class="h-8 w-8 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 flex items-center justify-center transition shrink-0"
+                        class="h-8 w-8 rounded-lg text-blue-300 hover:text-rose-300 hover:bg-white/10 flex items-center justify-center transition shrink-0"
                         title="Keluar Akun"
                         aria-label="Keluar Akun"
                     >
@@ -229,7 +236,7 @@ const logout = () => {
         >
             <div
                 v-if="isMobileSidebarOpen"
-                class="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-xs lg:hidden"
+                class="fixed inset-0 z-50 bg-blue-950/60 backdrop-blur-xs lg:hidden"
                 @click="isMobileSidebarOpen = false"
             ></div>
         </transition>
@@ -244,22 +251,25 @@ const logout = () => {
         >
             <aside
                 v-if="isMobileSidebarOpen"
-                class="fixed inset-y-0 left-0 z-50 w-72 bg-white text-slate-700 flex flex-col border-r border-slate-200 shadow-2xl lg:hidden"
+                class="fixed inset-y-0 left-0 z-50 w-72 bg-blue-950 text-blue-100 flex flex-col border-r border-blue-900 shadow-2xl lg:hidden"
             >
-                <div class="flex h-16 shrink-0 items-center justify-between px-5 border-b border-slate-200 bg-white">
+                <div class="flex h-16 shrink-0 items-center justify-between px-5 border-b border-blue-900 bg-blue-950">
                     <div class="flex items-center gap-2.5">
-                        <div class="flex h-8 w-8 items-center justify-center rounded-xl bg-teal-800 text-white font-bold shadow-xs">
+                        <div class="flex h-8 w-8 items-center justify-center rounded-xl bg-orange-500 text-white font-bold shadow-xs">
                             <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                             </svg>
                         </div>
-                        <span class="font-bold text-sm text-slate-900">SIMRS Gateway</span>
+                        <div>
+                            <span class="font-bold text-sm text-white block leading-tight">SIMRS Gateway</span>
+                            <span class="text-[11px] text-blue-300">Setiawandev</span>
+                        </div>
                     </div>
 
                     <button
                         type="button"
                         @click="isMobileSidebarOpen = false"
-                        class="p-1.5 rounded-lg text-slate-400 hover:text-slate-900 hover:bg-slate-100"
+                        class="p-1.5 rounded-lg text-blue-300 hover:text-white hover:bg-blue-900"
                     >
                         <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -269,7 +279,7 @@ const logout = () => {
 
                 <nav class="flex-1 overflow-y-auto px-4 py-5 space-y-6">
                     <div v-for="(group, gIdx) in navigationGroups" :key="gIdx" class="space-y-1">
-                        <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider px-3 mb-1.5">
+                        <p class="text-[11px] font-bold text-blue-300/70 uppercase tracking-wider px-3 mb-1.5">
                             {{ group.title }}
                         </p>
 
@@ -282,13 +292,13 @@ const logout = () => {
                             @click="isMobileSidebarOpen = false"
                             class="group flex items-center justify-between rounded-xl px-3.5 py-2.5 text-xs font-semibold transition"
                             :class="isActiveRoute(item.href)
-                                ? 'bg-teal-800 text-white shadow-xs font-bold'
-                                : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'"
+                                ? 'bg-orange-500 text-white shadow-xs font-bold'
+                                : 'text-blue-100/70 hover:bg-blue-900 hover:text-white'"
                         >
                             <div class="flex items-center gap-3">
                                 <svg
                                     class="h-4 w-4 shrink-0"
-                                    :class="isActiveRoute(item.href) ? 'text-teal-200' : 'text-slate-400 group-hover:text-slate-600'"
+                                    :class="isActiveRoute(item.href) ? 'text-white' : 'text-blue-300 group-hover:text-orange-300'"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     stroke="currentColor"
@@ -301,11 +311,11 @@ const logout = () => {
                     </div>
                 </nav>
 
-                <div class="p-4 border-t border-slate-200 bg-slate-50">
+                <div class="p-4 border-t border-blue-900 bg-blue-950">
                     <button
                         type="button"
                         @click="logout"
-                        class="w-full flex items-center justify-center gap-2 rounded-xl bg-rose-50 text-rose-700 hover:bg-rose-100 border border-rose-200/80 py-2.5 text-xs font-bold transition"
+                        class="w-full flex items-center justify-center gap-2 rounded-xl bg-rose-500/10 text-rose-200 hover:bg-rose-500/20 border border-rose-400/30 py-2.5 text-xs font-bold transition"
                     >
                         <span>Keluar dari Admin Panel</span>
                     </button>
@@ -318,12 +328,12 @@ const logout = () => {
         <!-- ========================================== -->
         <div class="flex-1 lg:pl-64 flex flex-col min-h-screen w-full min-w-0">
             <!-- Top Header on Content Area -->
-            <header class="sticky top-0 z-30 border-b border-slate-200/90 bg-white/95 shadow-xs backdrop-blur-md h-16 flex items-center justify-between px-4 sm:px-6 lg:px-8">
+            <header class="sticky top-0 z-30 border-b border-stone-200 bg-white/95 shadow-xs backdrop-blur-md h-16 flex items-center justify-between gap-3 px-4 sm:px-6 lg:px-8">
                 <!-- Left: Hamburger (Mobile) + Breadcrumb Context -->
-                <div class="flex items-center gap-3">
+                <div class="flex items-center gap-3 min-w-0">
                     <button
                         type="button"
-                        class="inline-flex lg:hidden items-center justify-center h-9 w-9 rounded-lg border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition shadow-2xs"
+                        class="inline-flex lg:hidden items-center justify-center h-9 w-9 rounded-lg border border-stone-200 bg-white text-stone-700 hover:bg-stone-100 transition shadow-2xs shrink-0"
                         @click="isMobileSidebarOpen = true"
                         aria-label="Buka Menu Sidebar"
                     >
@@ -332,37 +342,63 @@ const logout = () => {
                         </svg>
                     </button>
 
-                    <div>
+                    <div class="min-w-0">
                         <div class="flex items-center gap-2">
-                            <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider hidden sm:inline">Admin /</span>
-                            <h1 class="text-sm sm:text-base font-bold text-slate-900 tracking-tight truncate max-w-[200px] sm:max-w-md">{{ title }}</h1>
+                            <span class="text-xs font-semibold text-stone-400 uppercase tracking-wider hidden sm:inline">Admin /</span>
+                            <h1 class="text-sm sm:text-base font-bold text-stone-900 tracking-tight truncate max-w-[200px] sm:max-w-md">{{ title }}</h1>
                         </div>
                     </div>
                 </div>
 
-                <!-- Right: Quick Status & Actions -->
-                <div class="flex items-center gap-2.5 sm:gap-3">
-                    <div class="hidden sm:flex items-center gap-2 rounded-md bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700 ring-1 ring-inset ring-emerald-600/20">
-                        <span class="h-1.5 w-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
+                <!-- Center: Global Search -->
+                <div class="hidden md:flex flex-1 max-w-md">
+                    <div class="relative w-full">
+                        <input
+                            v-model="topSearch"
+                            @keyup.enter="submitTopSearch"
+                            type="text"
+                            placeholder="Cari endpoint, faskes, IP..."
+                            class="w-full rounded-xl border border-stone-200 bg-stone-100 pl-9 pr-3 py-2 text-xs text-stone-800 placeholder-stone-400 focus:border-blue-800 focus:bg-white focus:outline-hidden transition"
+                        />
+                        <svg class="h-4 w-4 text-stone-400 absolute left-3 top-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Right: Quick Status, User & Actions -->
+                <div class="flex items-center gap-2.5 sm:gap-3 shrink-0">
+                    <div class="hidden sm:flex items-center gap-2 rounded-md bg-blue-50 px-2.5 py-1 text-xs font-semibold text-blue-800 ring-1 ring-inset ring-blue-800/20">
+                        <span class="h-1.5 w-1.5 rounded-full bg-blue-800 animate-pulse"></span>
                         Bridging Ready
+                    </div>
+
+                    <div class="hidden lg:flex items-center gap-2.5 rounded-xl border border-stone-200 bg-stone-50 pl-1.5 pr-3 py-1">
+                        <div class="flex h-7 w-7 items-center justify-center rounded-lg bg-blue-800 text-white font-bold text-[11px] shrink-0">
+                            {{ (user?.name || 'A').charAt(0).toUpperCase() }}
+                        </div>
+                        <div class="min-w-0 leading-tight">
+                            <p class="text-[11px] font-bold text-stone-900 truncate max-w-[120px]">{{ user?.name || 'Superadmin' }}</p>
+                            <p class="text-[10px] text-stone-400 truncate max-w-[120px]">{{ user?.email }}</p>
+                        </div>
                     </div>
 
                     <a
                         href="/downloads/postman-collection"
                         download="simrs-gateway-bpjs-postman-collection.json"
-                        class="hidden md:inline-flex items-center gap-1.5 rounded-lg border border-amber-300 bg-amber-50 px-2.5 py-1.5 text-xs font-bold text-amber-900 hover:bg-amber-100 transition shadow-2xs"
+                        class="hidden md:inline-flex items-center gap-1.5 rounded-lg border border-orange-300 bg-orange-50 px-2.5 py-1.5 text-xs font-bold text-orange-900 hover:bg-orange-100 transition shadow-2xs"
                         title="Unduh Postman Collection JSON"
                     >
-                        <span class="flex h-3.5 w-3.5 items-center justify-center rounded bg-amber-500 text-white font-bold text-[8px]">P</span>
+                        <span class="flex h-3.5 w-3.5 items-center justify-center rounded bg-orange-500 text-white font-bold text-[8px]">P</span>
                         <span>Postman</span>
                     </a>
 
                     <a
                         href="/"
-                        class="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition shadow-2xs"
+                        class="inline-flex items-center gap-1.5 rounded-lg border border-stone-200 bg-white px-3 py-1.5 text-xs font-semibold text-stone-700 hover:bg-stone-50 transition shadow-2xs"
                         title="Lihat Halaman Depan"
                     >
-                        <svg class="h-3.5 w-3.5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg class="h-3.5 w-3.5 text-stone-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                         </svg>
                         <span class="hidden sm:inline">Beranda</span>
@@ -371,7 +407,7 @@ const logout = () => {
             </header>
 
             <!-- Main Page Workspace -->
-            <main class="flex-1 w-full max-w-[1920px] px-3 py-4 sm:px-6 lg:px-8">
+            <main class="flex-1 w-full max-w-[1920px] px-3 py-4 sm:px-6 lg:px-8 bg-stone-100">
                 <slot />
             </main>
         </div>

@@ -322,7 +322,7 @@ const copyText = async (label, value) => {
 
 const statusBadgeClass = (status) => {
     if (status === 'sent') {
-        return 'bg-emerald-100 text-emerald-800';
+        return 'bg-blue-100 text-blue-800';
     }
 
     if (status === 'failed') {
@@ -330,10 +330,10 @@ const statusBadgeClass = (status) => {
     }
 
     if (status === 'generated') {
-        return 'bg-amber-100 text-amber-800';
+        return 'bg-orange-100 text-orange-800';
     }
 
-    return 'bg-slate-100 text-slate-700';
+    return 'bg-stone-100 text-stone-700';
 };
 
 const refreshHistory = async () => {
@@ -387,35 +387,35 @@ const submit = async (mode, useStagingBundle = false) => {
     >
         <div class="grid gap-6 xl:grid-cols-[420px,minmax(0,1fr)]">
             <section class="space-y-6">
-                <article class="rounded-[28px] border border-slate-200 bg-white p-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
+                <article class="rounded-[28px] border border-stone-200 bg-white p-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
                     <p class="text-xs font-semibold uppercase tracking-[0.35em] text-[var(--app-accent)]">Generator</p>
-                    <h2 class="mt-3 text-2xl font-semibold text-slate-900">BPJS Rekam Medis</h2>
-                    <p class="mt-2 text-sm text-slate-600">
+                    <h2 class="mt-3 text-2xl font-semibold text-stone-900">BPJS Rekam Medis</h2>
+                    <p class="mt-2 text-sm text-stone-600">
                         Gunakan sample bundle untuk preview payload dan kirim live ke endpoint Trust Mark BPJS.
                     </p>
 
                     <div class="mt-5 grid gap-4">
-                        <label class="text-sm font-medium text-slate-700">
+                        <label class="text-sm font-medium text-stone-700">
                             No. SEP
-                            <input v-model="form.no_sep" type="text" class="mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-[var(--app-accent)]" />
+                            <input v-model="form.no_sep" type="text" class="mt-2 w-full rounded-2xl border border-stone-200 px-4 py-3 text-sm outline-none transition focus:border-blue-800" />
                         </label>
 
-                        <label class="text-sm font-medium text-slate-700">
+                        <label class="text-sm font-medium text-stone-700">
                             Jenis Pelayanan
-                            <select v-model="form.jns_pelayanan" class="mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-[var(--app-accent)]">
+                            <select v-model="form.jns_pelayanan" class="mt-2 w-full rounded-2xl border border-stone-200 px-4 py-3 text-sm outline-none transition focus:border-blue-800">
                                 <option value="1">1 - Rawat Inap</option>
                                 <option value="2">2 - Rawat Jalan</option>
                             </select>
                         </label>
 
                         <div class="grid gap-4 md:grid-cols-2">
-                            <label class="text-sm font-medium text-slate-700">
+                            <label class="text-sm font-medium text-stone-700">
                                 Bulan
-                                <input v-model="form.bulan" type="text" maxlength="2" class="mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-[var(--app-accent)]" />
+                                <input v-model="form.bulan" type="text" maxlength="2" class="mt-2 w-full rounded-2xl border border-stone-200 px-4 py-3 text-sm outline-none transition focus:border-blue-800" />
                             </label>
-                            <label class="text-sm font-medium text-slate-700">
+                            <label class="text-sm font-medium text-stone-700">
                                 Tahun
-                                <input v-model="form.tahun" type="text" maxlength="4" class="mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-[var(--app-accent)]" />
+                                <input v-model="form.tahun" type="text" maxlength="4" class="mt-2 w-full rounded-2xl border border-stone-200 px-4 py-3 text-sm outline-none transition focus:border-blue-800" />
                             </label>
                         </div>
                     </div>
@@ -423,7 +423,7 @@ const submit = async (mode, useStagingBundle = false) => {
                     <div class="mt-5 grid gap-3 md:grid-cols-2">
                         <button
                             type="button"
-                            class="rounded-2xl bg-[var(--app-accent)] px-4 py-3 text-sm font-semibold text-white transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-60"
+                            class="rounded-2xl bg-orange-500 px-4 py-3 text-sm font-semibold text-white transition hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-60"
                             :disabled="loading"
                             @click="submit('preview')"
                         >
@@ -431,7 +431,7 @@ const submit = async (mode, useStagingBundle = false) => {
                         </button>
                         <button
                             type="button"
-                            class="rounded-2xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
+                            class="rounded-2xl bg-stone-900 px-4 py-3 text-sm font-semibold text-white transition hover:bg-stone-800 disabled:cursor-not-allowed disabled:opacity-60"
                             :disabled="loading"
                             @click="submit('insert')"
                         >
@@ -440,32 +440,32 @@ const submit = async (mode, useStagingBundle = false) => {
                     </div>
 
                     <div class="mt-5 grid gap-3">
-                        <div class="rounded-2xl bg-slate-50 p-4">
-                            <p class="text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">Sample Path</p>
-                            <p class="mt-2 break-all text-sm text-slate-700">{{ samplePath || '-' }}</p>
+                        <div class="rounded-2xl bg-stone-50 p-4">
+                            <p class="text-xs font-semibold uppercase tracking-[0.25em] text-stone-500">Sample Path</p>
+                            <p class="mt-2 break-all text-sm text-stone-700">{{ samplePath || '-' }}</p>
                         </div>
-                        <div class="rounded-2xl bg-slate-50 p-4">
-                            <p class="text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">Provider Code</p>
-                            <p class="mt-2 text-sm text-slate-700">{{ providerCode || '-' }}</p>
+                        <div class="rounded-2xl bg-stone-50 p-4">
+                            <p class="text-xs font-semibold uppercase tracking-[0.25em] text-stone-500">Provider Code</p>
+                            <p class="mt-2 text-sm text-stone-700">{{ providerCode || '-' }}</p>
                         </div>
                     </div>
 
-                    <p v-if="copiedState" class="mt-4 text-sm font-medium text-emerald-700">{{ copiedState }}</p>
+                    <p v-if="copiedState" class="mt-4 text-sm font-medium text-blue-700">{{ copiedState }}</p>
                 </article>
 
-                <article class="rounded-[28px] border border-slate-200 bg-white p-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
+                <article class="rounded-[28px] border border-stone-200 bg-white p-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
                     <div class="flex items-center justify-between gap-3">
                         <div>
                             <p class="text-xs font-semibold uppercase tracking-[0.35em] text-[var(--app-accent)]">History</p>
-                            <h3 class="mt-2 text-xl font-semibold text-slate-900">Audit Pengiriman</h3>
+                            <h3 class="mt-2 text-xl font-semibold text-stone-900">Audit Pengiriman</h3>
                         </div>
-                        <button type="button" class="rounded-2xl border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50" @click="refreshHistory">
+                        <button type="button" class="rounded-2xl border border-stone-200 px-4 py-2 text-sm font-semibold text-stone-700 transition hover:bg-stone-50" @click="refreshHistory">
                             Refresh
                         </button>
                     </div>
 
                     <div class="mt-5 space-y-3 max-h-[900px] overflow-y-auto pr-1">
-                        <div v-if="!historyReady" class="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-4 text-sm text-amber-800">
+                        <div v-if="!historyReady" class="rounded-2xl border border-orange-200 bg-orange-50 px-4 py-4 text-sm text-orange-800">
                             Tabel histori belum tersedia. Jalankan migrasi agar preview dan insert bisa otomatis tersimpan ke audit log.
                         </div>
 
@@ -474,19 +474,19 @@ const submit = async (mode, useStagingBundle = false) => {
                             :key="item.id"
                             type="button"
                             class="w-full rounded-2xl border px-4 py-4 text-left transition"
-                            :class="selectedHistoryId === item.id ? 'border-[var(--app-accent)] bg-emerald-50' : 'border-slate-200 bg-white hover:bg-slate-50'"
+                            :class="selectedHistoryId === item.id ? 'border-blue-800 bg-blue-50' : 'border-stone-200 bg-white hover:bg-stone-50'"
                             @click="selectedHistoryId = item.id"
                         >
                             <div class="flex items-start justify-between gap-3">
                                 <div>
-                                    <p class="text-sm font-semibold text-slate-900">Job #{{ item.id }}</p>
-                                    <p class="mt-1 text-sm text-slate-600">{{ item.sep_no }}</p>
+                                    <p class="text-sm font-semibold text-stone-900">Job #{{ item.id }}</p>
+                                    <p class="mt-1 text-sm text-stone-600">{{ item.sep_no }}</p>
                                 </div>
                                 <span class="rounded-full px-3 py-1 text-xs font-semibold" :class="statusBadgeClass(item.status)">
                                     {{ item.status }}
                                 </span>
                             </div>
-                            <div class="mt-3 grid gap-2 text-xs text-slate-500 md:grid-cols-2">
+                            <div class="mt-3 grid gap-2 text-xs text-stone-500 md:grid-cols-2">
                                 <p>{{ item.jns_pelayanan_label }}</p>
                                 <p>{{ item.bulan }}/{{ item.tahun }}</p>
                                 <p>{{ formatDate(item.created_at) }}</p>
@@ -494,22 +494,22 @@ const submit = async (mode, useStagingBundle = false) => {
                             </div>
                         </button>
 
-                        <div v-if="!historyItems.length" class="rounded-2xl border border-dashed border-slate-200 px-4 py-8 text-center text-sm text-slate-500">
+                        <div v-if="!historyItems.length" class="rounded-2xl border border-dashed border-stone-200 px-4 py-8 text-center text-sm text-stone-500">
                             Belum ada histori preview atau pengiriman medical record.
                         </div>
                     </div>
                 </article>
 
-                <article class="rounded-[28px] border border-slate-200 bg-white p-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
+                <article class="rounded-[28px] border border-stone-200 bg-white p-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
                     <p class="text-xs font-semibold uppercase tracking-[0.35em] text-[var(--app-accent)]">Resource Blueprint</p>
-                    <h3 class="mt-2 text-xl font-semibold text-slate-900">Field Wajib per Resource</h3>
-                    <p class="mt-2 text-sm text-slate-600">
+                    <h3 class="mt-2 text-xl font-semibold text-stone-900">Field Wajib per Resource</h3>
+                    <p class="mt-2 text-sm text-stone-600">
                         Pilih resource untuk melihat field wajib dan template dasar yang bisa langsung dipakai saat generate bundle.
                     </p>
 
                     <select
                         v-model="selectedBlueprintKey"
-                        class="mt-4 w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-[var(--app-accent)]"
+                        class="mt-4 w-full rounded-2xl border border-stone-200 px-4 py-3 text-sm outline-none transition focus:border-blue-800"
                     >
                         <option v-for="item in resourceBlueprints" :key="item.resource" :value="item.resource">
                             {{ item.label }}
@@ -517,54 +517,54 @@ const submit = async (mode, useStagingBundle = false) => {
                     </select>
 
                     <div v-if="selectedBlueprint" class="mt-5 space-y-4">
-                        <div class="rounded-2xl bg-slate-50 p-4">
-                            <p class="text-sm font-semibold text-slate-900">{{ selectedBlueprint.label }}</p>
-                            <p class="mt-2 text-sm text-slate-600">{{ selectedBlueprint.description }}</p>
+                        <div class="rounded-2xl bg-stone-50 p-4">
+                            <p class="text-sm font-semibold text-stone-900">{{ selectedBlueprint.label }}</p>
+                            <p class="mt-2 text-sm text-stone-600">{{ selectedBlueprint.description }}</p>
                         </div>
 
                         <div class="space-y-3">
                             <div
                                 v-for="field in selectedBlueprint.required_fields"
                                 :key="field.path"
-                                class="rounded-2xl border border-slate-200 p-4"
+                                class="rounded-2xl border border-stone-200 p-4"
                             >
                                 <div class="flex flex-wrap items-center justify-between gap-2">
-                                    <p class="text-sm font-semibold text-slate-900">{{ field.path }}</p>
-                                    <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">{{ field.type }}</span>
+                                    <p class="text-sm font-semibold text-stone-900">{{ field.path }}</p>
+                                    <span class="rounded-full bg-stone-100 px-3 py-1 text-xs font-semibold text-stone-700">{{ field.type }}</span>
                                 </div>
-                                <p class="mt-2 text-sm text-slate-600">{{ field.description }}</p>
-                                <p class="mt-2 text-xs text-slate-500">Contoh: {{ pretty(field.example) }}</p>
+                                <p class="mt-2 text-sm text-stone-600">{{ field.description }}</p>
+                                <p class="mt-2 text-xs text-stone-500">Contoh: {{ pretty(field.example) }}</p>
                             </div>
                         </div>
 
-                        <div class="rounded-3xl border border-slate-200 p-4">
+                        <div class="rounded-3xl border border-stone-200 p-4">
                             <div class="flex items-center justify-between gap-3">
                                 <div>
-                                    <p class="text-sm font-semibold text-slate-900">Form Isian {{ selectedBlueprint.label }}</p>
-                                    <p class="mt-1 text-sm text-slate-600">Isi field wajib di sini, lalu salin hasil JSON resource yang terbentuk.</p>
-                                    <p class="mt-1 text-xs text-slate-500">
+                                    <p class="text-sm font-semibold text-stone-900">Form Isian {{ selectedBlueprint.label }}</p>
+                                    <p class="mt-1 text-sm text-stone-600">Isi field wajib di sini, lalu salin hasil JSON resource yang terbentuk.</p>
+                                    <p class="mt-1 text-xs text-stone-500">
                                         Format ID otomatis:
-                                        <span class="font-semibold text-slate-700">kodeRS + kodeKemenkes + jnsPelayanan + UUID</span>
+                                        <span class="font-semibold text-stone-700">kodeRS + kodeKemenkes + jnsPelayanan + UUID</span>
                                     </p>
                                 </div>
                                 <div class="flex flex-wrap gap-2">
                                     <button
                                         type="button"
-                                        class="rounded-2xl border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
+                                        class="rounded-2xl border border-stone-200 px-4 py-2 text-sm font-semibold text-stone-700 transition hover:bg-stone-50"
                                         @click="generateResourceId"
                                     >
                                         Generate ID Otomatis
                                     </button>
                                     <button
                                         type="button"
-                                        class="rounded-2xl border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
+                                        class="rounded-2xl border border-stone-200 px-4 py-2 text-sm font-semibold text-stone-700 transition hover:bg-stone-50"
                                         @click="copyText(`${selectedBlueprint.label} JSON`, selectedBlueprintGenerated)"
                                     >
                                         Copy JSON
                                     </button>
                                     <button
                                         type="button"
-                                        class="rounded-2xl bg-[var(--app-accent)] px-4 py-2 text-sm font-semibold text-white transition hover:brightness-95"
+                                        class="rounded-2xl bg-orange-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-orange-600"
                                         @click="addToBundle"
                                     >
                                         Tambah ke Bundle
@@ -574,18 +574,18 @@ const submit = async (mode, useStagingBundle = false) => {
 
                             <div class="mt-4 grid gap-4">
                                 <div v-for="field in selectedBlueprint.required_fields" :key="`${selectedBlueprint.resource}-${field.path}`">
-                                    <label class="text-sm font-medium text-slate-700">
+                                    <label class="text-sm font-medium text-stone-700">
                                         {{ field.path }}
                                         <textarea
                                             v-if="field.type === 'array' || field.type === 'object'"
                                             v-model="blueprintFormState[selectedBlueprint.resource][field.path]"
                                             rows="3"
-                                            class="mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-[var(--app-accent)]"
+                                            class="mt-2 w-full rounded-2xl border border-stone-200 px-4 py-3 text-sm outline-none transition focus:border-blue-800"
                                         />
                                         <select
                                             v-else-if="field.type === 'boolean'"
                                             v-model="blueprintFormState[selectedBlueprint.resource][field.path]"
-                                            class="mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-[var(--app-accent)]"
+                                            class="mt-2 w-full rounded-2xl border border-stone-200 px-4 py-3 text-sm outline-none transition focus:border-blue-800"
                                         >
                                             <option value="true">true</option>
                                             <option value="false">false</option>
@@ -594,21 +594,21 @@ const submit = async (mode, useStagingBundle = false) => {
                                             v-else
                                             v-model="blueprintFormState[selectedBlueprint.resource][field.path]"
                                             :type="inputType(field)"
-                                            class="mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-[var(--app-accent)]"
+                                            class="mt-2 w-full rounded-2xl border border-stone-200 px-4 py-3 text-sm outline-none transition focus:border-blue-800"
                                         />
                                     </label>
                                 </div>
                             </div>
 
                             <div class="mt-5">
-                                <p class="text-xs font-semibold uppercase tracking-[0.35em] text-slate-500">Generated Resource</p>
-                                <pre class="mt-3 overflow-x-auto rounded-3xl bg-slate-950 p-5 text-xs text-slate-100">{{ pretty(selectedBlueprintGenerated) }}</pre>
+                                <p class="text-xs font-semibold uppercase tracking-[0.35em] text-stone-500">Generated Resource</p>
+                                <pre class="mt-3 overflow-x-auto rounded-3xl bg-stone-950 p-5 text-xs text-stone-100">{{ pretty(selectedBlueprintGenerated) }}</pre>
                             </div>
                         </div>
 
                         <button
                             type="button"
-                            class="rounded-2xl border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
+                            class="rounded-2xl border border-stone-200 px-4 py-2 text-sm font-semibold text-stone-700 transition hover:bg-stone-50"
                             @click="copyText(`${selectedBlueprint.label} Template`, selectedBlueprint.template)"
                         >
                             Copy Template
@@ -616,17 +616,17 @@ const submit = async (mode, useStagingBundle = false) => {
                     </div>
                 </article>
 
-                <article class="rounded-[28px] border border-slate-200 bg-white p-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
+                <article class="rounded-[28px] border border-stone-200 bg-white p-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
                     <div class="flex flex-wrap items-center justify-between gap-3">
                         <div>
                             <p class="text-xs font-semibold uppercase tracking-[0.35em] text-[var(--app-accent)]">Staging Bundle</p>
-                            <h3 class="mt-2 text-xl font-semibold text-slate-900">Resource yang Sudah Dikumpulkan</h3>
-                            <p class="mt-1 text-sm text-slate-600">Tambah resource dari form di atas, lalu susun bundle final sebelum dipakai ke generator BPJS.</p>
+                            <h3 class="mt-2 text-xl font-semibold text-stone-900">Resource yang Sudah Dikumpulkan</h3>
+                            <p class="mt-1 text-sm text-stone-600">Tambah resource dari form di atas, lalu susun bundle final sebelum dipakai ke generator BPJS.</p>
                         </div>
                         <div class="flex flex-wrap gap-2">
                             <button
                                 type="button"
-                                class="rounded-2xl border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
+                                class="rounded-2xl border border-stone-200 px-4 py-2 text-sm font-semibold text-stone-700 transition hover:bg-stone-50"
                                 @click="copyText('Bundle JSON', stagedBundle)"
                             >
                                 Copy Bundle
@@ -640,7 +640,7 @@ const submit = async (mode, useStagingBundle = false) => {
                             </button>
                             <button
                                 type="button"
-                                class="rounded-2xl bg-[var(--app-accent)] px-4 py-2 text-sm font-semibold text-white transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-60"
+                                class="rounded-2xl bg-orange-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-60"
                                 :disabled="loading || !stagedResources.length"
                                 @click="submit('preview', true)"
                             >
@@ -648,7 +648,7 @@ const submit = async (mode, useStagingBundle = false) => {
                             </button>
                             <button
                                 type="button"
-                                class="rounded-2xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
+                                class="rounded-2xl bg-stone-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-stone-800 disabled:cursor-not-allowed disabled:opacity-60"
                                 :disabled="loading || !stagedResources.length"
                                 @click="submit('insert', true)"
                             >
@@ -663,10 +663,10 @@ const submit = async (mode, useStagingBundle = false) => {
                                 <div
                                     v-for="(total, type) in stagedSummary"
                                     :key="type"
-                                    class="flex items-center justify-between rounded-2xl bg-slate-50 px-4 py-3 text-sm"
+                                    class="flex items-center justify-between rounded-2xl bg-stone-50 px-4 py-3 text-sm"
                                 >
-                                    <span class="font-medium text-slate-700">{{ type }}</span>
-                                    <span class="font-semibold text-slate-900">{{ total }}</span>
+                                    <span class="font-medium text-stone-700">{{ type }}</span>
+                                    <span class="font-semibold text-stone-900">{{ total }}</span>
                                 </div>
                             </div>
 
@@ -674,19 +674,19 @@ const submit = async (mode, useStagingBundle = false) => {
                                 <div
                                     v-for="item in stagedResources"
                                     :key="item.localId"
-                                    class="rounded-2xl border border-slate-200 p-4"
+                                    class="rounded-2xl border border-stone-200 p-4"
                                 >
                                     <div class="flex items-start justify-between gap-3">
                                         <div>
-                                            <p class="text-sm font-semibold text-slate-900">
+                                            <p class="text-sm font-semibold text-stone-900">
                                                 {{ item.resource.resourceType }}{{ item.resource.id ? ` · ${item.resource.id}` : '' }}
                                             </p>
-                                            <p class="mt-1 text-xs text-slate-500">{{ item.type }}</p>
+                                            <p class="mt-1 text-xs text-stone-500">{{ item.type }}</p>
                                         </div>
                                         <div class="flex gap-2">
                                             <button
                                                 type="button"
-                                                class="rounded-xl border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-50"
+                                                class="rounded-xl border border-stone-200 px-3 py-1.5 text-xs font-semibold text-stone-700 transition hover:bg-stone-50"
                                                 @click="copyText(`${item.resource.resourceType} Resource`, item.resource)"
                                             >
                                                 Copy
@@ -700,44 +700,44 @@ const submit = async (mode, useStagingBundle = false) => {
                                             </button>
                                         </div>
                                     </div>
-                                    <pre class="mt-3 max-h-[220px] overflow-auto rounded-2xl bg-slate-950 p-4 text-xs text-slate-100">{{ pretty(item.resource) }}</pre>
+                                    <pre class="mt-3 max-h-[220px] overflow-auto rounded-2xl bg-stone-950 p-4 text-xs text-stone-100">{{ pretty(item.resource) }}</pre>
                                 </div>
 
-                                <div v-if="!stagedResources.length" class="rounded-2xl border border-dashed border-slate-200 px-4 py-8 text-center text-sm text-slate-500">
-                                    Belum ada resource di staging. Pilih blueprint, isi form, lalu klik <span class="font-semibold text-slate-700">Tambah ke Bundle</span>.
+                                <div v-if="!stagedResources.length" class="rounded-2xl border border-dashed border-stone-200 px-4 py-8 text-center text-sm text-stone-500">
+                                    Belum ada resource di staging. Pilih blueprint, isi form, lalu klik <span class="font-semibold text-stone-700">Tambah ke Bundle</span>.
                                 </div>
                             </div>
                         </div>
 
-                        <div class="rounded-3xl border border-slate-200 p-5">
+                        <div class="rounded-3xl border border-stone-200 p-5">
                             <div class="flex items-center justify-between gap-3">
                                 <div>
-                                    <p class="text-xs font-semibold uppercase tracking-[0.35em] text-slate-500">Generated Bundle</p>
-                                    <p class="mt-1 text-sm text-slate-600">Preview bundle final dari resource yang sudah dikumpulkan.</p>
+                                    <p class="text-xs font-semibold uppercase tracking-[0.35em] text-stone-500">Generated Bundle</p>
+                                    <p class="mt-1 text-sm text-stone-600">Preview bundle final dari resource yang sudah dikumpulkan.</p>
                                 </div>
-                                <p class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
+                                <p class="rounded-full bg-stone-100 px-3 py-1 text-xs font-semibold text-stone-700">
                                     {{ stagedResources.length }} resource
                                 </p>
                             </div>
-                            <pre class="mt-4 max-h-[760px] overflow-auto rounded-3xl bg-slate-950 p-5 text-xs text-slate-100">{{ pretty(stagedBundle) }}</pre>
+                            <pre class="mt-4 max-h-[760px] overflow-auto rounded-3xl bg-stone-950 p-5 text-xs text-stone-100">{{ pretty(stagedBundle) }}</pre>
                         </div>
                     </div>
                 </article>
             </section>
 
             <section class="space-y-6">
-                <article class="rounded-[28px] border border-slate-200 bg-white p-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
+                <article class="rounded-[28px] border border-stone-200 bg-white p-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
                     <div class="flex flex-wrap items-center justify-between gap-3">
                         <div>
                             <p class="text-xs font-semibold uppercase tracking-[0.35em] text-[var(--app-accent)]">Current Result</p>
-                            <h3 class="mt-2 text-xl font-semibold text-slate-900">Preview dan Request Final</h3>
+                            <h3 class="mt-2 text-xl font-semibold text-stone-900">Preview dan Request Final</h3>
                         </div>
 
                         <div class="flex flex-wrap gap-2">
                             <button
                                 v-if="currentResult?.request_payload"
                                 type="button"
-                                class="rounded-2xl border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
+                                class="rounded-2xl border border-stone-200 px-4 py-2 text-sm font-semibold text-stone-700 transition hover:bg-stone-50"
                                 @click="copyText('Payload', currentResult.request_payload)"
                             >
                                 Copy Payload
@@ -745,7 +745,7 @@ const submit = async (mode, useStagingBundle = false) => {
                             <button
                                 v-if="currentDataMr"
                                 type="button"
-                                class="rounded-2xl border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
+                                class="rounded-2xl border border-stone-200 px-4 py-2 text-sm font-semibold text-stone-700 transition hover:bg-stone-50"
                                 @click="copyText('dataMR', currentDataMr)"
                             >
                                 Copy dataMR
@@ -755,105 +755,105 @@ const submit = async (mode, useStagingBundle = false) => {
 
                     <div v-if="currentResult?.error" class="mt-5 rounded-2xl border border-rose-200 bg-rose-50 p-4">
                         <p class="text-sm font-semibold text-rose-800">{{ currentResult.error.metaData?.message ?? 'Gagal memproses request.' }}</p>
-                        <pre class="mt-3 overflow-x-auto rounded-2xl bg-slate-950 p-4 text-xs text-slate-100">{{ pretty(currentResult.error) }}</pre>
+                        <pre class="mt-3 overflow-x-auto rounded-2xl bg-stone-950 p-4 text-xs text-stone-100">{{ pretty(currentResult.error) }}</pre>
                     </div>
 
                     <div v-else-if="currentResult" class="mt-5 space-y-5">
                         <div class="grid gap-4 md:grid-cols-4">
-                            <div class="rounded-2xl bg-slate-50 p-4">
-                                <p class="text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">Job ID</p>
-                                <p class="mt-2 text-lg font-semibold text-slate-900">{{ currentResult.job_id ?? '-' }}</p>
+                            <div class="rounded-2xl bg-stone-50 p-4">
+                                <p class="text-xs font-semibold uppercase tracking-[0.25em] text-stone-500">Job ID</p>
+                                <p class="mt-2 text-lg font-semibold text-stone-900">{{ currentResult.job_id ?? '-' }}</p>
                             </div>
-                            <div class="rounded-2xl bg-slate-50 p-4">
-                                <p class="text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">Payload ID</p>
-                                <p class="mt-2 text-lg font-semibold text-slate-900">{{ currentResult.payload_id ?? '-' }}</p>
+                            <div class="rounded-2xl bg-stone-50 p-4">
+                                <p class="text-xs font-semibold uppercase tracking-[0.25em] text-stone-500">Payload ID</p>
+                                <p class="mt-2 text-lg font-semibold text-stone-900">{{ currentResult.payload_id ?? '-' }}</p>
                             </div>
-                            <div class="rounded-2xl bg-slate-50 p-4">
-                                <p class="text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">Encrypted Length</p>
-                                <p class="mt-2 text-lg font-semibold text-slate-900">{{ currentResult.encoding?.encrypted_payload_length ?? currentDataMr.length }}</p>
+                            <div class="rounded-2xl bg-stone-50 p-4">
+                                <p class="text-xs font-semibold uppercase tracking-[0.25em] text-stone-500">Encrypted Length</p>
+                                <p class="mt-2 text-lg font-semibold text-stone-900">{{ currentResult.encoding?.encrypted_payload_length ?? currentDataMr.length }}</p>
                             </div>
-                            <div class="rounded-2xl bg-slate-50 p-4">
-                                <p class="text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">Gzip Base64 Length</p>
-                                <p class="mt-2 text-lg font-semibold text-slate-900">{{ currentResult.encoding?.gzip_payload_base64_length ?? '-' }}</p>
+                            <div class="rounded-2xl bg-stone-50 p-4">
+                                <p class="text-xs font-semibold uppercase tracking-[0.25em] text-stone-500">Gzip Base64 Length</p>
+                                <p class="mt-2 text-lg font-semibold text-stone-900">{{ currentResult.encoding?.gzip_payload_base64_length ?? '-' }}</p>
                             </div>
-                            <div class="rounded-2xl bg-slate-50 p-4">
-                                <p class="text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">Bundle Source</p>
-                                <p class="mt-2 text-sm font-semibold text-slate-900">{{ currentResult.source?.bundle_source ?? '-' }}</p>
+                            <div class="rounded-2xl bg-stone-50 p-4">
+                                <p class="text-xs font-semibold uppercase tracking-[0.25em] text-stone-500">Bundle Source</p>
+                                <p class="mt-2 text-sm font-semibold text-stone-900">{{ currentResult.source?.bundle_source ?? '-' }}</p>
                             </div>
                         </div>
 
                         <div class="grid gap-5 xl:grid-cols-[380px,minmax(0,1fr)]">
-                            <div class="rounded-3xl border border-slate-200 p-5">
-                                <p class="text-xs font-semibold uppercase tracking-[0.35em] text-slate-500">Bundle Snapshot</p>
-                                <div class="mt-4 space-y-3 text-sm text-slate-600">
-                                    <p><span class="font-semibold text-slate-900">Bundle ID:</span> {{ currentResult.bundle_snapshot?.bundle_id ?? '-' }}</p>
-                                    <p><span class="font-semibold text-slate-900">Type:</span> {{ currentResult.bundle_snapshot?.bundle_type ?? '-' }}</p>
-                                    <p><span class="font-semibold text-slate-900">Entry Count:</span> {{ currentResult.bundle_snapshot?.entry_count ?? '-' }}</p>
+                            <div class="rounded-3xl border border-stone-200 p-5">
+                                <p class="text-xs font-semibold uppercase tracking-[0.35em] text-stone-500">Bundle Snapshot</p>
+                                <div class="mt-4 space-y-3 text-sm text-stone-600">
+                                    <p><span class="font-semibold text-stone-900">Bundle ID:</span> {{ currentResult.bundle_snapshot?.bundle_id ?? '-' }}</p>
+                                    <p><span class="font-semibold text-stone-900">Type:</span> {{ currentResult.bundle_snapshot?.bundle_type ?? '-' }}</p>
+                                    <p><span class="font-semibold text-stone-900">Entry Count:</span> {{ currentResult.bundle_snapshot?.entry_count ?? '-' }}</p>
                                 </div>
                                 <div class="mt-5 space-y-2">
                                     <div
                                         v-for="[name, total] in currentSnapshotEntries"
                                         :key="name"
-                                        class="flex items-center justify-between rounded-2xl bg-slate-50 px-3 py-2 text-sm"
+                                        class="flex items-center justify-between rounded-2xl bg-stone-50 px-3 py-2 text-sm"
                                     >
-                                        <span class="font-medium text-slate-700">{{ name }}</span>
-                                        <span class="font-semibold text-slate-900">{{ total }}</span>
+                                        <span class="font-medium text-stone-700">{{ name }}</span>
+                                        <span class="font-semibold text-stone-900">{{ total }}</span>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="space-y-5">
-                                <div class="rounded-3xl border border-slate-200 p-5">
-                                    <p class="text-xs font-semibold uppercase tracking-[0.35em] text-slate-500">Request Payload</p>
-                                    <pre class="mt-4 max-h-[320px] overflow-auto whitespace-pre-wrap break-all rounded-3xl bg-slate-950 p-5 text-xs text-slate-100">{{ pretty(currentResult.request_payload) }}</pre>
+                                <div class="rounded-3xl border border-stone-200 p-5">
+                                    <p class="text-xs font-semibold uppercase tracking-[0.35em] text-stone-500">Request Payload</p>
+                                    <pre class="mt-4 max-h-[320px] overflow-auto whitespace-pre-wrap break-all rounded-3xl bg-stone-950 p-5 text-xs text-stone-100">{{ pretty(currentResult.request_payload) }}</pre>
                                 </div>
 
-                                <div class="rounded-3xl border border-slate-200 p-5">
+                                <div class="rounded-3xl border border-stone-200 p-5">
                                     <div class="flex items-center justify-between gap-3">
-                                        <p class="text-xs font-semibold uppercase tracking-[0.35em] text-slate-500">dataMR Preview</p>
-                                        <p class="text-xs text-slate-500">{{ currentDataMr.length }} chars</p>
+                                        <p class="text-xs font-semibold uppercase tracking-[0.35em] text-stone-500">dataMR Preview</p>
+                                        <p class="text-xs text-stone-500">{{ currentDataMr.length }} chars</p>
                                     </div>
-                                    <pre class="mt-4 max-h-[220px] overflow-auto whitespace-pre-wrap break-all rounded-3xl bg-slate-950 p-5 text-xs text-slate-100">{{ currentDataMr || '-' }}</pre>
+                                    <pre class="mt-4 max-h-[220px] overflow-auto whitespace-pre-wrap break-all rounded-3xl bg-stone-950 p-5 text-xs text-stone-100">{{ currentDataMr || '-' }}</pre>
                                 </div>
 
-                                <div class="rounded-3xl border border-slate-200 p-5">
+                                <div class="rounded-3xl border border-stone-200 p-5">
                                     <div class="flex items-center justify-between gap-3">
-                                        <p class="text-xs font-semibold uppercase tracking-[0.35em] text-slate-500">Data Sebelum Enkripsi</p>
+                                        <p class="text-xs font-semibold uppercase tracking-[0.35em] text-stone-500">Data Sebelum Enkripsi</p>
                                         <button
                                             v-if="currentResult.raw_bundle"
                                             type="button"
-                                            class="rounded-2xl border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
+                                            class="rounded-2xl border border-stone-200 px-4 py-2 text-sm font-semibold text-stone-700 transition hover:bg-stone-50"
                                             @click="copyText('Raw Bundle', currentResult.raw_bundle)"
                                         >
                                             Copy Raw Bundle
                                         </button>
                                     </div>
-                                    <pre class="mt-4 max-h-[320px] overflow-auto whitespace-pre-wrap break-all rounded-3xl bg-slate-950 p-5 text-xs text-slate-100">{{ pretty(currentResult.raw_bundle ?? {}) }}</pre>
+                                    <pre class="mt-4 max-h-[320px] overflow-auto whitespace-pre-wrap break-all rounded-3xl bg-stone-950 p-5 text-xs text-stone-100">{{ pretty(currentResult.raw_bundle ?? {}) }}</pre>
                                 </div>
 
-                                <div v-if="currentResult.bpjs_response" class="rounded-3xl border border-slate-200 p-5">
-                                    <p class="text-xs font-semibold uppercase tracking-[0.35em] text-slate-500">BPJS Response</p>
-                                    <pre class="mt-4 max-h-[280px] overflow-auto whitespace-pre-wrap break-all rounded-3xl bg-slate-950 p-5 text-xs text-slate-100">{{ pretty(currentResult.bpjs_response) }}</pre>
+                                <div v-if="currentResult.bpjs_response" class="rounded-3xl border border-stone-200 p-5">
+                                    <p class="text-xs font-semibold uppercase tracking-[0.35em] text-stone-500">BPJS Response</p>
+                                    <pre class="mt-4 max-h-[280px] overflow-auto whitespace-pre-wrap break-all rounded-3xl bg-stone-950 p-5 text-xs text-stone-100">{{ pretty(currentResult.bpjs_response) }}</pre>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div v-else class="mt-5 rounded-3xl border border-dashed border-slate-200 px-5 py-10 text-center text-sm text-slate-500">
+                    <div v-else class="mt-5 rounded-3xl border border-dashed border-stone-200 px-5 py-10 text-center text-sm text-stone-500">
                         Belum ada preview. Jalankan preview atau insert live untuk melihat bundle, request payload, dan hasil dataMR.
                     </div>
                 </article>
 
-                <article class="rounded-[28px] border border-slate-200 bg-white p-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
+                <article class="rounded-[28px] border border-stone-200 bg-white p-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
                     <div class="flex flex-wrap items-center justify-between gap-3">
                         <div>
                             <p class="text-xs font-semibold uppercase tracking-[0.35em] text-[var(--app-accent)]">Selected History</p>
-                            <h3 class="mt-2 text-xl font-semibold text-slate-900">Detail Job Tersimpan</h3>
+                            <h3 class="mt-2 text-xl font-semibold text-stone-900">Detail Job Tersimpan</h3>
                         </div>
                         <button
                             v-if="selectedHistory?.payload?.request"
                             type="button"
-                            class="rounded-2xl border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
+                            class="rounded-2xl border border-stone-200 px-4 py-2 text-sm font-semibold text-stone-700 transition hover:bg-stone-50"
                             @click="copyText('History Request', selectedHistory.payload.request)"
                         >
                             Copy Request
@@ -862,57 +862,57 @@ const submit = async (mode, useStagingBundle = false) => {
 
                     <div v-if="selectedHistory" class="mt-5 space-y-5">
                         <div class="grid gap-4 md:grid-cols-4">
-                            <div class="rounded-2xl bg-slate-50 p-4">
-                                <p class="text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">Status</p>
+                            <div class="rounded-2xl bg-stone-50 p-4">
+                                <p class="text-xs font-semibold uppercase tracking-[0.25em] text-stone-500">Status</p>
                                 <p class="mt-2">
                                     <span class="rounded-full px-3 py-1 text-xs font-semibold" :class="statusBadgeClass(selectedHistory.status)">
                                         {{ selectedHistory.status }}
                                     </span>
                                 </p>
                             </div>
-                            <div class="rounded-2xl bg-slate-50 p-4">
-                                <p class="text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">Response Code</p>
-                                <p class="mt-2 text-lg font-semibold text-slate-900">{{ selectedHistory.payload?.bpjs_response_code ?? '-' }}</p>
+                            <div class="rounded-2xl bg-stone-50 p-4">
+                                <p class="text-xs font-semibold uppercase tracking-[0.25em] text-stone-500">Response Code</p>
+                                <p class="mt-2 text-lg font-semibold text-stone-900">{{ selectedHistory.payload?.bpjs_response_code ?? '-' }}</p>
                             </div>
-                            <div class="rounded-2xl bg-slate-50 p-4">
-                                <p class="text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">Encrypted Length</p>
-                                <p class="mt-2 text-lg font-semibold text-slate-900">{{ selectedHistory.payload?.encrypted_payload_length ?? '-' }}</p>
+                            <div class="rounded-2xl bg-stone-50 p-4">
+                                <p class="text-xs font-semibold uppercase tracking-[0.25em] text-stone-500">Encrypted Length</p>
+                                <p class="mt-2 text-lg font-semibold text-stone-900">{{ selectedHistory.payload?.encrypted_payload_length ?? '-' }}</p>
                             </div>
-                            <div class="rounded-2xl bg-slate-50 p-4">
-                                <p class="text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">Sent At</p>
-                                <p class="mt-2 text-sm font-semibold text-slate-900">{{ formatDate(selectedHistory.sent_at) }}</p>
+                            <div class="rounded-2xl bg-stone-50 p-4">
+                                <p class="text-xs font-semibold uppercase tracking-[0.25em] text-stone-500">Sent At</p>
+                                <p class="mt-2 text-sm font-semibold text-stone-900">{{ formatDate(selectedHistory.sent_at) }}</p>
                             </div>
                         </div>
 
                         <div class="grid gap-5 xl:grid-cols-[320px,minmax(0,1fr)]">
-                            <div class="rounded-3xl border border-slate-200 p-5">
-                                <p class="text-xs font-semibold uppercase tracking-[0.35em] text-slate-500">Snapshot</p>
+                            <div class="rounded-3xl border border-stone-200 p-5">
+                                <p class="text-xs font-semibold uppercase tracking-[0.35em] text-stone-500">Snapshot</p>
                                 <div class="mt-4 space-y-2">
                                     <div
                                         v-for="[name, total] in selectedHistorySnapshotEntries"
                                         :key="name"
-                                        class="flex items-center justify-between rounded-2xl bg-slate-50 px-3 py-2 text-sm"
+                                        class="flex items-center justify-between rounded-2xl bg-stone-50 px-3 py-2 text-sm"
                                     >
-                                        <span class="font-medium text-slate-700">{{ name }}</span>
-                                        <span class="font-semibold text-slate-900">{{ total }}</span>
+                                        <span class="font-medium text-stone-700">{{ name }}</span>
+                                        <span class="font-semibold text-stone-900">{{ total }}</span>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="space-y-5">
-                                <div class="rounded-3xl border border-slate-200 p-5">
-                                    <p class="text-xs font-semibold uppercase tracking-[0.35em] text-slate-500">Stored Request</p>
-                                    <pre class="mt-4 max-h-[280px] overflow-auto whitespace-pre-wrap break-all rounded-3xl bg-slate-950 p-5 text-xs text-slate-100">{{ pretty(selectedHistory.payload?.request) }}</pre>
+                                <div class="rounded-3xl border border-stone-200 p-5">
+                                    <p class="text-xs font-semibold uppercase tracking-[0.35em] text-stone-500">Stored Request</p>
+                                    <pre class="mt-4 max-h-[280px] overflow-auto whitespace-pre-wrap break-all rounded-3xl bg-stone-950 p-5 text-xs text-stone-100">{{ pretty(selectedHistory.payload?.request) }}</pre>
                                 </div>
 
-                                <div class="rounded-3xl border border-slate-200 p-5">
-                                    <p class="text-xs font-semibold uppercase tracking-[0.35em] text-slate-500">Stored Raw Bundle</p>
-                                    <pre class="mt-4 max-h-[280px] overflow-auto whitespace-pre-wrap break-all rounded-3xl bg-slate-950 p-5 text-xs text-slate-100">{{ pretty(selectedHistory.payload?.raw_bundle) }}</pre>
+                                <div class="rounded-3xl border border-stone-200 p-5">
+                                    <p class="text-xs font-semibold uppercase tracking-[0.35em] text-stone-500">Stored Raw Bundle</p>
+                                    <pre class="mt-4 max-h-[280px] overflow-auto whitespace-pre-wrap break-all rounded-3xl bg-stone-950 p-5 text-xs text-stone-100">{{ pretty(selectedHistory.payload?.raw_bundle) }}</pre>
                                 </div>
 
-                                <div class="rounded-3xl border border-slate-200 p-5">
-                                    <p class="text-xs font-semibold uppercase tracking-[0.35em] text-slate-500">Stored Response</p>
-                                    <pre class="mt-4 max-h-[280px] overflow-auto whitespace-pre-wrap break-all rounded-3xl bg-slate-950 p-5 text-xs text-slate-100">{{ pretty(selectedHistory.payload?.response) }}</pre>
+                                <div class="rounded-3xl border border-stone-200 p-5">
+                                    <p class="text-xs font-semibold uppercase tracking-[0.35em] text-stone-500">Stored Response</p>
+                                    <pre class="mt-4 max-h-[280px] overflow-auto whitespace-pre-wrap break-all rounded-3xl bg-stone-950 p-5 text-xs text-stone-100">{{ pretty(selectedHistory.payload?.response) }}</pre>
                                 </div>
 
                                 <div v-if="selectedHistory.last_error" class="rounded-2xl border border-rose-200 bg-rose-50 p-4 text-sm text-rose-800">
@@ -922,7 +922,7 @@ const submit = async (mode, useStagingBundle = false) => {
                         </div>
                     </div>
 
-                    <div v-else class="mt-5 rounded-3xl border border-dashed border-slate-200 px-5 py-10 text-center text-sm text-slate-500">
+                    <div v-else class="mt-5 rounded-3xl border border-dashed border-stone-200 px-5 py-10 text-center text-sm text-stone-500">
                         Belum ada history yang bisa ditampilkan.
                     </div>
                 </article>
